@@ -9,6 +9,8 @@
       margin: 24px auto; 
       padding: 0 16px;
       color: #333;
+      background: #fff;
+      transition: background 0.3s, color 0.3s;
     }
     h2 {
       color: #5a67d8;
@@ -31,12 +33,16 @@
       width: 100px;
       border: 1px solid #ccc;
       border-radius: 4px;
+      background: white;
+      color: #333;
     }
     input[type="text"] {
       padding: 8px;
       width: 280px;
       border: 1px solid #ccc;
       border-radius: 4px;
+      background: white;
+      color: #333;
     }
     button {
       padding: 8px 16px;
@@ -70,10 +76,105 @@
       padding: 8px 0;
       border-bottom: 1px solid #eee;
     }
+    
+    /* Dark Mode Toggle */
+    .dark-mode-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+    
+    #dark-mode-toggle {
+      padding: 10px 20px;
+      background: #5a67d8;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    #dark-mode-toggle:hover {
+      background: #4c51bf;
+    }
+    
+    /* ========== Dark Mode Styles ========== */
+    body.dark-mode {
+      background: #1a1a2e;
+      color: #e0e0e0;
+    }
+    
+    body.dark-mode h2 {
+      color: #818cf8;
+      border-bottom-color: #2d3748;
+    }
+    
+    body.dark-mode section {
+      background: #16213e;
+      border: 1px solid #0f3460;
+    }
+    
+    body.dark-mode input[type="number"],
+    body.dark-mode input[type="text"] {
+      background: #0f3460;
+      border-color: #1a365d;
+      color: #e0e0e0;
+    }
+    
+    body.dark-mode input[type="number"]:focus,
+    body.dark-mode input[type="text"]:focus {
+      border-color: #5a67d8;
+      outline: none;
+    }
+    
+    body.dark-mode button {
+      background: #5a67d8;
+    }
+    
+    body.dark-mode button:hover {
+      background: #4c51bf;
+    }
+    
+    body.dark-mode .save-btn {
+      background: #48bb78;
+    }
+    
+    body.dark-mode .save-btn:hover {
+      background: #38a169;
+    }
+    
+    body.dark-mode .hint {
+      color: #adb5bd;
+    }
+    
+    body.dark-mode li {
+      border-bottom-color: #2d3748;
+    }
+    
+    body.dark-mode #dark-mode-toggle {
+      background: #16213e;
+      border: 1px solid #0f3460;
+      color: #e0e0e0;
+    }
+    
+    body.dark-mode #dark-mode-toggle:hover {
+      background: #0f3460;
+    }
   </style>
 </head>
 <body>
-  <h2>Local Focus – Settings</h2>
+  <div class="dark-mode-section">
+    <h2>Local Focus – Settings</h2>
+    <button id="dark-mode-toggle">
+      <span id="dark-mode-icon">🌙</span>
+      <span id="dark-mode-text">Dark Mode</span>
+    </button>
+  </div>
 
   <!-- Timer Settings -->
   <section>

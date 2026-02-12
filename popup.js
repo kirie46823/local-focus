@@ -1,6 +1,7 @@
 const KEYS = {
   loopEnabled: "loopEnabled",
-  focusMinutes: "focusMinutes"
+  focusMinutes: "focusMinutes",
+  darkMode: "darkMode"
 };
 
 const $ = (id) => document.getElementById(id);
@@ -39,6 +40,27 @@ $("loop-toggle").onclick = async () => {
   await updateLoopUI(newValue);
 };
 
+// ダークモードトグル
+$("dark-mode-toggle").onclick = async () => {
+  const { darkMode = false } = await chrome.storage.local.get([KEYS.darkMode]);
+  const newValue = !darkMode;
+  await chrome.storage.local.set({ [KEYS.darkMode]: newValue });
+  await updateDarkModeUI(newValue);
+};
+
+// ダークモードUI更新
+async function updateDarkModeUI(enabled) {
+  const icon = $("dark-mode-icon");
+  
+  if (enabled) {
+    document.body.classList.add("dark-mode");
+    icon.textContent = "☀️";
+  } else {
+    document.body.classList.remove("dark-mode");
+    icon.textContent = "🌙";
+  }
+}
+
 // ループUI更新
 async function updateLoopUI(enabled) {
   const btn = $("loop-toggle");
@@ -69,8 +91,9 @@ async function render() {
     const res = await sendMessage({ type: "GET_STATE" });
 
     // ループ設定の読み込み
-    const { loopEnabled = false } = await chrome.storage.local.get([KEYS.loopEnabled]);
+    const { loopEnabled = false, darkMode = false } = await chrome.storage.local.get([KEYS.loopEnabled, KEYS.darkMode]);
     await updateLoopUI(loopEnabled);
+    await updateDarkModeUI(darkMode);
     const { focusing = false, endsAt = null, blocklist = [], sessionType = null } = res?.state || {};
 
     // フロー表示の更新

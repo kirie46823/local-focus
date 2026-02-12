@@ -9,6 +9,9 @@
       max-width: 600px;
       margin: 0 auto;
       text-align: center;
+      background: #fff;
+      color: #333;
+      transition: background 0.3s, color 0.3s;
     }
     h1 { 
       margin: 0 0 8px; 
@@ -78,6 +81,57 @@
       font-size: 13px;
       color: #999;
       line-height: 1.6;
+    }
+    
+    /* ========== Dark Mode ========== */
+    body.dark-mode {
+      background: #1a1a2e;
+      color: #e0e0e0;
+    }
+    
+    body.dark-mode h1 {
+      color: #e0e0e0;
+    }
+    
+    body.dark-mode h2 {
+      color: #adb5bd;
+    }
+    
+    body.dark-mode .site-info {
+      background: #16213e;
+      color: #adb5bd;
+      border: 1px solid #0f3460;
+    }
+    
+    body.dark-mode .time-remaining {
+      color: #818cf8;
+    }
+    
+    body.dark-mode .mode-label {
+      color: #adb5bd;
+    }
+    
+    body.dark-mode #back {
+      background: #16213e;
+      color: #e0e0e0;
+      border: 1px solid #0f3460;
+    }
+    
+    body.dark-mode #back:hover {
+      background: #0f3460;
+    }
+    
+    body.dark-mode #open-popup {
+      background: #5a67d8;
+      color: white;
+    }
+    
+    body.dark-mode #open-popup:hover {
+      background: #4c51bf;
+    }
+    
+    body.dark-mode .tip {
+      color: #6c757d;
     }
   </style>
 </head>
