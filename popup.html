@@ -1,8 +1,27 @@
 <!doctype html>
 <html>
-  <body>
-    <h3>Focus</h3>
-    <button id="start">Start</button>
-    <script src="popup.js"></script>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <style>
+    body { font-family: system-ui; width: 280px; padding: 12px; }
+    .row { display:flex; gap:8px; margin-top:10px; }
+    button { padding: 8px 10px; }
+    #time { font-size: 28px; font-weight: 700; margin-top: 8px; }
+    .muted { font-size: 12px; opacity: .75; }
+  </style>
+</head>
+<body>
+  <div class="muted">Focus stays on your device</div>
+  <div id="time">25:00</div>
+  <div class="row">
+    <button id="start">Start 25m</button>
+    <button id="stop">Stop</button>
+  </div>
+  <div class="row">
+    <button id="settings">Settings</button>
+  </div>
+  <div id="status" class="muted" style="margin-top:8px;"></div>
+
+  <script src="popup.js"></script>
+</body>
 </html>
