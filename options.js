@@ -1,6 +1,42 @@
-const KEYS = { blocklist: "blocklist" };
+const KEYS = {
+  blocklist: "blocklist",
+  focusMinutes: "focusMinutes",
+  breakMinutes: "breakMinutes"
+};
 const $ = (id) => document.getElementById(id);
 
+// ========== Load settings on page load ==========
+async function loadSettings() {
+  const {
+    focusMinutes = 25,
+    breakMinutes = 5
+  } = await chrome.storage.local.get([KEYS.focusMinutes, KEYS.breakMinutes]);
+
+  $("focusMinutes").value = focusMinutes;
+  $("breakMinutes").value = breakMinutes;
+}
+
+// ========== Save timer settings ==========
+$("saveTimers").onclick = async () => {
+  const focusMinutes = Math.max(1, Math.min(60, parseInt($("focusMinutes").value) || 25));
+  const breakMinutes = Math.max(1, Math.min(30, parseInt($("breakMinutes").value) || 5));
+
+  await chrome.storage.local.set({
+    [KEYS.focusMinutes]: focusMinutes,
+    [KEYS.breakMinutes]: breakMinutes
+  });
+
+  // Show confirmation
+  const status = $("saveStatus");
+  status.textContent = "✓ Saved!";
+  setTimeout(() => {
+    status.textContent = "";
+  }, 2000);
+
+  console.log("Timer settings saved:", { focusMinutes, breakMinutes });
+};
+
+// ========== Block list management ==========
 $("add").onclick = async () => {
   const domain = normalize($("domain").value);
   if (!domain) return;
@@ -30,6 +66,7 @@ async function render() {
   if (blocklist.length === 0) {
     const li = document.createElement("li");
     li.textContent = "(empty)";
+    li.style.color = "#999";
     ul.appendChild(li);
     return;
   }
@@ -52,4 +89,6 @@ async function render() {
   });
 }
 
+// ========== Initialize ==========
+loadSettings();
 render();

@@ -3,21 +3,106 @@
 <head>
   <meta charset="utf-8" />
   <style>
-    body { font-family: system-ui; max-width: 720px; margin: 24px auto; padding: 0 16px; }
-    input { padding: 8px; width: 280px; }
-    button { padding: 8px 10px; margin-left: 8px; }
+    body { 
+      font-family: system-ui; 
+      max-width: 720px; 
+      margin: 24px auto; 
+      padding: 0 16px;
+      color: #333;
+    }
+    h2 {
+      color: #5a67d8;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 8px;
+    }
+    section {
+      margin: 24px 0;
+      padding: 16px;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+    label {
+      display: block;
+      margin: 12px 0 4px;
+      font-weight: 500;
+    }
+    input[type="number"] {
+      padding: 8px;
+      width: 100px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    input[type="text"] {
+      padding: 8px;
+      width: 280px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      padding: 8px 16px;
+      margin-left: 8px;
+      background: #5a67d8;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #4c51bf;
+    }
+    .save-btn {
+      background: #48bb78;
+      margin-top: 12px;
+    }
+    .save-btn:hover {
+      background: #38a169;
+    }
+    .hint {
+      font-size: 13px;
+      color: #666;
+      margin-top: 4px;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    li {
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+    }
   </style>
 </head>
 <body>
   <h2>Local Focus – Settings</h2>
-  <p>Block list (domains only):</p>
 
-  <div>
-    <input id="domain" placeholder="twitter.com" />
-    <button id="add">Add</button>
-  </div>
+  <!-- Timer Settings -->
+  <section>
+    <h3>⏱️ Timer Settings</h3>
+    
+    <label for="focusMinutes">Focus Duration (minutes)</label>
+    <input type="number" id="focusMinutes" min="1" max="60" value="25" />
+    <span class="hint">Default: 25 minutes (range: 1-60)</span>
 
-  <ul id="list"></ul>
+    <label for="breakMinutes">Break Duration (minutes)</label>
+    <input type="number" id="breakMinutes" min="1" max="30" value="5" />
+    <span class="hint">Default: 5 minutes (range: 1-30)</span>
+
+    <button class="save-btn" id="saveTimers">Save Timer Settings</button>
+    <span id="saveStatus" style="margin-left: 12px; color: #48bb78;"></span>
+  </section>
+
+  <!-- Block List -->
+  <section>
+    <h3>🚫 Block List</h3>
+    <p>Add domains to block during focus sessions:</p>
+
+    <div>
+      <input type="text" id="domain" placeholder="twitter.com" />
+      <button id="add">Add</button>
+    </div>
+
+    <ul id="list"></ul>
+  </section>
 
   <script src="options.js"></script>
 </body>

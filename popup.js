@@ -1,5 +1,6 @@
 const KEYS = {
-  loopEnabled: "loopEnabled"
+  loopEnabled: "loopEnabled",
+  focusMinutes: "focusMinutes"
 };
 
 const $ = (id) => document.getElementById(id);
@@ -15,7 +16,9 @@ function sendMessage(msg) {
 }
 
 $("start").onclick = async () => {
-  await sendMessage({ type: "START_FOCUS", minutes: 25 });
+  // 設定から Focus 時間を取得
+  const { focusMinutes = 25 } = await chrome.storage.local.get(["focusMinutes"]);
+  await sendMessage({ type: "START_FOCUS", minutes: focusMinutes });
   await render();
 };
 
@@ -44,14 +47,15 @@ async function updateLoopUI(enabled) {
   
   if (enabled) {
     btn.classList.add("enabled");
-    indicator.classList.add("enabled");
+    if (indicator) indicator.classList.add("enabled");
     text.textContent = "Loop ON";
   } else {
     btn.classList.remove("enabled");
-    indicator.classList.remove("enabled");
+    if (indicator) indicator.classList.remove("enabled");
     text.textContent = "Loop OFF";
   }
 }
+
 
 function formatMMSS(ms) {
   const total = Math.max(0, Math.floor(ms / 1000));
@@ -63,71 +67,42 @@ function formatMMSS(ms) {
 async function render() {
   try {
     const res = await sendMessage({ type: "GET_STATE" });
-    const { focusing = false, endsAt = null, blocklist = [], sessionType = null } = res?.state || {};
 
     // ループ設定の読み込み
     const { loopEnabled = false } = await chrome.storage.local.get([KEYS.loopEnabled]);
     await updateLoopUI(loopEnabled);
+    const { focusing = false, endsAt = null, blocklist = [], sessionType = null } = res?.state || {};
 
-    // 背景色の変更
-    document.body.className = '';
-    
     // フロー表示の更新
-    $("flow-focus").classList.remove("active");
-    $("flow-break").classList.remove("active");
-    
-    if (focusing) {
-      if (sessionType === "break") {
-        document.body.className = 'break';
-        $("flow-break").classList.add("active");
-      } else {
-        document.body.className = 'focusing';
-        $("flow-focus").classList.add("active");
-      }
-    }
+    const focusStep = $("flow-focus");
+    const breakStep = $("flow-break");
+    if (focusStep) focusStep.classList.remove("active");
+    if (breakStep) breakStep.classList.remove("active");
 
-    // ブロック数とモード表示
-    $("blocked-count").textContent = blocklist.length;
-    
-    // Startボタンの状態
-    const startBtn = $("start");
-    if (focusing && sessionType === "focus") {
-      startBtn.disabled = true;
-      startBtn.textContent = "In Progress...";
-    } else if (focusing && sessionType === "break") {
-      startBtn.disabled = true;
-      startBtn.textContent = "Break Time...";
-    } else {
-      startBtn.disabled = false;
-      startBtn.textContent = "Start 25m";
-    }
-    
     if (!focusing || !endsAt || endsAt <= Date.now()) {
-      // Idle状態
-      $("time").textContent = "25:00";
-      $("status").textContent = "Ready to focus";
-      $("status").className = "status-idle";
-      $("mode-label").textContent = "Idle";
+      // 設定から Focus 時間を取得して表示
+      const { focusMinutes = 25 } = await chrome.storage.local.get(["focusMinutes"]);
+      $("time").textContent = formatMMSS(focusMinutes * 60 * 1000);
+      $("status").textContent = `Idle / blocked sites: ${blocklist.length}`;
+      document.body.className = "";
       return;
     }
 
-    // タイマー更新
     const remaining = endsAt - Date.now();
     $("time").textContent = formatMMSS(remaining);
     
-    // 状態に応じた表示
+    // 背景色とフロー表示
     if (sessionType === "break") {
-      $("status").textContent = "Take a break";
-      $("status").className = "status-break";
-      $("mode-label").textContent = "Break";
+      document.body.className = "break-mode";
+      if (breakStep) breakStep.classList.add("active");
+      $("status").textContent = `Break… / blocked sites: ${blocklist.length}`;
     } else {
-      $("status").textContent = "Focusing";
-      $("status").className = "status-focusing";
-      $("mode-label").textContent = "Focus";
+      document.body.className = "focus-mode";
+      if (focusStep) focusStep.classList.add("active");
+      $("status").textContent = `Focusing… / blocked sites: ${blocklist.length}`;
     }
   } catch (e) {
     $("status").textContent = `Error: ${e?.message || e}`;
-    $("status").className = "status-idle";
   }
 }
 

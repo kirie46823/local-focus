@@ -1,23 +1,19 @@
 const KEYS = {
-  blocklist: "blocklist",
-  focusing: "focusing",
-  endsAt: "endsAt",
-  sessionType: "sessionType",
-  loopEnabled: "loopEnabled"
+  blocklist: "blocklist",     // string[]
+  focusing: "focusing",       // boolean
+  endsAt: "endsAt",           // number (epoch ms) | null
+  sessionType: "sessionType",  // "focus" | "break" | null
+  focusMinutes: "focusMinutes", // number (default 25)
+  breakMinutes: "breakMinutes",  // number (default 5)
+  loopEnabled: "loopEnabled"    // boolean (default false)
 };
+
 
 const ALARM_NAME = "focusEnd";
 const RULE_BASE = 1000;
 
 chrome.runtime.onInstalled.addListener(async () => {
-  const cur = await chrome.storage.local.get([
-    KEYS.blocklist, 
-    KEYS.focusing, 
-    KEYS.endsAt, 
-    KEYS.sessionType,
-    KEYS.loopEnabled
-  ]);
-  
+  const cur = await chrome.storage.local.get([KEYS.blocklist, KEYS.focusing, KEYS.endsAt, KEYS.sessionType, KEYS.loopEnabled]);
   if (!Array.isArray(cur[KEYS.blocklist])) await chrome.storage.local.set({ [KEYS.blocklist]: [] });
   if (typeof cur[KEYS.focusing] !== "boolean") await chrome.storage.local.set({ [KEYS.focusing]: false });
   if (cur[KEYS.endsAt] === undefined) await chrome.storage.local.set({ [KEYS.endsAt]: null });
@@ -26,6 +22,7 @@ chrome.runtime.onInstalled.addListener(async () => {
 
   await syncRules();
 });
+
 
 // 通知音を再生
 async function playNotificationSound() {
@@ -46,7 +43,7 @@ async function showNotification(title, message) {
       message: message,
       priority: 2,
       requireInteraction: false,
-      silent: true // 通知音は別途再生
+      silent: true
     });
   } catch (e) {
     console.error("Failed to show notification:", e);
@@ -56,20 +53,17 @@ async function showNotification(title, message) {
 chrome.alarms.onAlarm.addListener(async (alarm) => {
   if (alarm.name !== ALARM_NAME) return;
 
-  const { focusing, sessionType, loopEnabled = false } = await chrome.storage.local.get([
-    KEYS.focusing, 
-    KEYS.sessionType, 
-    KEYS.loopEnabled
-  ]);
-  
+  const { focusing, sessionType, loopEnabled = false } = await chrome.storage.local.get([KEYS.focusing, KEYS.sessionType, KEYS.loopEnabled]);
   if (!focusing) return;
 
   // Focus終了 → Break自動開始（5分固定）
   if (sessionType === "focus") {
     await stopAmbient();
 
-    const breakMinutes = 5;
+    // 設定からBreak時間を取得（デフォルト5分）
+    const { breakMinutes = 5 } = await chrome.storage.local.get([KEYS.breakMinutes]);
     const endsAt = Date.now() + breakMinutes * 60 * 1000;
+    await stopAmbient();
 
     await chrome.storage.local.set({
       [KEYS.focusing]: true,
@@ -97,7 +91,7 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
   if (sessionType === "break") {
     // ループが有効な場合：次のFocusセッションを自動開始
     if (loopEnabled) {
-      const focusMinutes = 25;
+      const { focusMinutes = 25 } = await chrome.storage.local.get([KEYS.focusMinutes]);
       const endsAt = Date.now() + focusMinutes * 60 * 1000;
 
       await chrome.storage.local.set({
@@ -106,24 +100,22 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
         [KEYS.sessionType]: "focus"
       });
 
+      await syncRules();
       await chrome.alarms.clear(ALARM_NAME);
       chrome.alarms.create(ALARM_NAME, { when: endsAt });
-
-      // Focusセッション開始：ブロック再開＆音再生
-      await syncRules();
       await playAmbient();
       
       // 通知音 + メッセージ
       await playNotificationSound();
       await showNotification(
         "🔥 Ready to focus again!",
-        "Starting next focus session. Let's do this!"
+        "Starting next focus session."
       );
       
       return;
     }
-    
-    // ループ無効：Idleへ
+
+    // ループが無効な場合：Idleへ
     await chrome.storage.local.set({
       [KEYS.focusing]: false,
       [KEYS.endsAt]: null,
@@ -138,26 +130,22 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
       "✓ Session completed!",
       "Great work! You can start a new session anytime."
     );
-    
-    return;
   }
 });
+
 
 chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
   (async () => {
     if (msg?.type === "GET_STATE") {
-      const s = await chrome.storage.local.get([
-        KEYS.blocklist, 
-        KEYS.focusing, 
-        KEYS.endsAt, 
-        KEYS.sessionType
-      ]);
+      const s = await chrome.storage.local.get([KEYS.blocklist, KEYS.focusing, KEYS.endsAt, KEYS.sessionType]);
       sendResponse({ ok: true, state: s });
       return;
     }
 
     if (msg?.type === "START_FOCUS") {
-      const minutes = Math.max(1, Number(msg.minutes ?? 25));
+      // 設定からFocus時間を取得（デフォルト25分）
+      const { focusMinutes = 25 } = await chrome.storage.local.get([KEYS.focusMinutes]);
+      const minutes = Math.max(1, Number(msg.minutes ?? focusMinutes));
       const endsAt = Date.now() + minutes * 60 * 1000;
 
       await chrome.storage.local.set({
@@ -175,15 +163,12 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
       return;
     }
 
+
     if (msg?.type === "STOP_FOCUS") {
       await stopAmbient();
       
       await chrome.alarms.clear(ALARM_NAME);
-      await chrome.storage.local.set({ 
-        [KEYS.focusing]: false, 
-        [KEYS.endsAt]: null, 
-        [KEYS.sessionType]: null 
-      });
+      await chrome.storage.local.set({ [KEYS.focusing]: false, [KEYS.endsAt]: null, [KEYS.sessionType]: null });
       await syncRules();
       sendResponse({ ok: true });
       return;
@@ -198,7 +183,7 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
     sendResponse({ ok: false, error: "UNKNOWN_MESSAGE" });
   })();
 
-  return true;
+  return true; // async
 });
 
 async function syncRules() {
@@ -208,9 +193,16 @@ async function syncRules() {
   const existing = await chrome.declarativeNetRequest.getDynamicRules();
   const removeRuleIds = existing.map(r => r.id).filter(id => id >= RULE_BASE && id < RULE_BASE + 5000);
 
+  // ★focus中だけブロック。それ以外（break/idle）は解除
   const shouldBlock = focusing && sessionType === "focus" && blocklist.length > 0;
 
   if (!shouldBlock) {
+    if (removeRuleIds.length) {
+      await chrome.declarativeNetRequest.updateDynamicRules({ removeRuleIds });
+    }
+    return;
+  }
+  if (!focusing || blocklist.length === 0) {
     if (removeRuleIds.length) {
       await chrome.declarativeNetRequest.updateDynamicRules({ removeRuleIds });
     }
@@ -227,6 +219,7 @@ async function syncRules() {
         redirect: { extensionPath: `/blocked.html?site=${encodeURIComponent(d)}` }
       },
       condition: {
+        // MVP: 文字列マッチ。精度上げるのは後でOK
         urlFilter: d,
         resourceTypes: ["main_frame"]
       }
@@ -264,6 +257,7 @@ async function playAmbient() {
 }
 
 async function stopAmbient() {
+  // offscreenが無い場合でもOK
   try {
     await chrome.runtime.sendMessage({ type: "AUDIO_STOP" });
   } catch (_) {}
