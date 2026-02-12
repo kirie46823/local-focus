@@ -1,6 +1,12 @@
 let audio;
 
 chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
+  // AUDIO関連のメッセージだけ処理
+  if (msg?.type !== "AUDIO_PLAY" && msg?.type !== "AUDIO_STOP") {
+    // 他のメッセージは無視（応答しない）
+    return false;
+  }
+
   (async () => {
     if (msg?.type === "AUDIO_PLAY") {
       if (!audio) {
@@ -24,9 +30,7 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
       sendResponse({ ok: true });
       return;
     }
-
-    sendResponse({ ok: false, error: "UNKNOWN" });
   })();
 
-  return true;
+  return true; // async
 });
