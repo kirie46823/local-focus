@@ -15,6 +15,8 @@
       padding: 0;
       background: #f8f9fa;
       color: #2c3e50;
+      max-height: 600px;
+      overflow-y: auto;
     }
     
     .container {
@@ -187,6 +189,23 @@
       border-color: #adb5bd;
     }
     
+    #dark-mode-toggle {
+      flex: 1;
+      background: white;
+      color: #6c757d;
+      border: 1px solid #dee2e6;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    
+    #dark-mode-toggle:hover {
+      background: #f8f9fa;
+      border-color: #adb5bd;
+    }
+    
     #loop-toggle {
       flex: 1;
       background: white;
@@ -289,6 +308,222 @@
     body.break .break-info {
       display: block;
     }
+    
+    /* ========== Dark Mode ========== */
+    body.dark-mode {
+      background: #1a1a2e;
+      color: #e0e0e0;
+    }
+    
+    body.dark-mode .timer-section {
+      background: #16213e;
+      border-color: #0f3460;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    
+    body.dark-mode #time {
+      color: #e0e0e0;
+    }
+    
+    body.dark-mode .status-idle {
+      color: #adb5bd;
+    }
+    
+    body.dark-mode .flow-step {
+      background: #16213e;
+      border-color: #0f3460;
+      color: #adb5bd;
+    }
+    
+    body.dark-mode .flow-step.active {
+      background: #5a67d8;
+      color: white;
+      border-color: #5a67d8;
+    }
+    
+    body.dark-mode .flow-step.break.active {
+      background: #48bb78;
+      border-color: #48bb78;
+    }
+    
+    body.dark-mode #start {
+      background: #5a67d8;
+      color: white;
+    }
+    
+    body.dark-mode #start:hover {
+      background: #4c51bf;
+    }
+    
+    body.dark-mode #start:disabled {
+      background: #2d3748;
+      color: #718096;
+    }
+    
+    body.dark-mode #stop {
+      background: #16213e;
+      color: #adb5bd;
+      border-color: #0f3460;
+    }
+    
+    body.dark-mode #stop:hover {
+      background: #0f3460;
+      border-color: #1a365d;
+    }
+    
+    body.dark-mode #settings {
+      background: #16213e;
+      color: #adb5bd;
+      border-color: #0f3460;
+    }
+    
+    body.dark-mode #settings:hover {
+      background: #0f3460;
+      border-color: #1a365d;
+    }
+    
+    body.dark-mode #dark-mode-toggle {
+      background: #16213e;
+      color: #adb5bd;
+      border-color: #0f3460;
+    }
+    
+    body.dark-mode #dark-mode-toggle:hover {
+      background: #0f3460;
+      border-color: #1a365d;
+    }
+    
+    body.dark-mode #loop-toggle {
+      background: #16213e;
+      color: #adb5bd;
+      border-color: #0f3460;
+    }
+    
+    body.dark-mode #loop-toggle:hover {
+      background: #0f3460;
+      border-color: #1a365d;
+    }
+    
+    body.dark-mode #loop-toggle.enabled {
+      background: #2d3748;
+      color: #5a67d8;
+      border-color: #4a5568;
+    }
+    
+    body.dark-mode #loop-toggle.enabled:hover {
+      background: #374151;
+    }
+    
+    body.dark-mode .stats {
+      background: #16213e;
+      border-color: #0f3460;
+    }
+    
+    body.dark-mode .stat-item {
+      color: #adb5bd;
+    }
+    
+    body.dark-mode .stat-value {
+      color: #e0e0e0;
+    }
+    
+    body.dark-mode .tagline {
+      color: #adb5bd;
+    }
+    
+    /* Dark mode + Focus state */
+    body.dark-mode.focusing {
+      background: #1e1b4b;
+    }
+    
+    body.dark-mode.focusing .timer-section {
+      border-color: #4c51bf;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+    }
+    
+    body.dark-mode.focusing #time {
+      color: #818cf8;
+    }
+    
+    /* Dark mode + Break state */
+    body.dark-mode.break {
+      background: #064e3b;
+    }
+    
+    body.dark-mode.break .timer-section {
+      border-color: #10b981;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+    }
+    
+    body.dark-mode.break #time {
+      color: #34d399;
+    }
+    
+    body.dark-mode .break-info {
+      background: #064e3b;
+      border-color: #10b981;
+      color: #d1fae5;
+    }
+    
+    /* Philosophy Section */
+    .philosophy {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 16px;
+      border: 1px solid #e9ecef;
+      text-align: center;
+    }
+    
+    .philosophy-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 12px;
+      letter-spacing: 0.3px;
+    }
+    
+    .philosophy-content {
+      font-size: 13px;
+      line-height: 1.8;
+      color: #6c757d;
+    }
+    
+    .philosophy-content .highlight {
+      display: block;
+      margin: 6px 0;
+      font-weight: 500;
+      color: #495057;
+    }
+    
+    .philosophy-footer {
+      margin-top: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #5a67d8;
+      font-style: italic;
+    }
+    
+    body.dark-mode .philosophy {
+      background: #16213e;
+      border-color: #0f3460;
+    }
+    
+    body.dark-mode .philosophy-title {
+      color: #e0e0e0;
+    }
+    
+    body.dark-mode .philosophy-content {
+      color: #adb5bd;
+    }
+    
+    body.dark-mode .philosophy-content .highlight {
+      color: #cbd5e0;
+    }
+    
+    body.dark-mode .philosophy-footer {
+      color: #818cf8;
+    }
   </style>
 </head>
 <body>
@@ -326,6 +561,9 @@
         <span class="loop-icon">↻</span>
         <span id="loop-text">Loop</span>
       </button>
+      <button id="dark-mode-toggle">
+        <span id="dark-mode-icon">🌙</span>
+      </button>
       <button id="settings">Settings</button>
     </div>
     
@@ -338,6 +576,17 @@
         <span class="stat-label">Status</span>
         <span class="stat-value" id="mode-label">Idle</span>
       </div>
+    </div>
+    
+    <!-- Philosophy Section -->
+    <div class="philosophy">
+      <div class="philosophy-title">Local Focus is designed for quiet work.</div>
+      <div class="philosophy-content">
+        <span class="highlight">No accounts.</span>
+        <span class="highlight">No tracking.</span>
+        <span class="highlight">No cloud.</span>
+      </div>
+      <div class="philosophy-footer">Just focus.</div>
     </div>
   </div>
 
