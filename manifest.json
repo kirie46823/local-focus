@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "Local Focus MVP",
+  "version": "0.1.0",
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "sw.js"
+  },
+  "permissions": ["storage"]
+}
