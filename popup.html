@@ -187,6 +187,23 @@
       border-color: #adb5bd;
     }
     
+    #dark-mode-toggle {
+      flex: 1;
+      background: white;
+      color: #6c757d;
+      border: 1px solid #dee2e6;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    
+    #dark-mode-toggle:hover {
+      background: #f8f9fa;
+      border-color: #adb5bd;
+    }
+    
     #loop-toggle {
       flex: 1;
       background: white;
@@ -289,6 +306,162 @@
     body.break .break-info {
       display: block;
     }
+    
+    /* ========== Dark Mode ========== */
+    body.dark-mode {
+      background: #1a1a2e;
+      color: #e0e0e0;
+    }
+    
+    body.dark-mode .timer-section {
+      background: #16213e;
+      border-color: #0f3460;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    
+    body.dark-mode #time {
+      color: #e0e0e0;
+    }
+    
+    body.dark-mode .status-idle {
+      color: #adb5bd;
+    }
+    
+    body.dark-mode .flow-step {
+      background: #16213e;
+      border-color: #0f3460;
+      color: #adb5bd;
+    }
+    
+    body.dark-mode .flow-step.active {
+      background: #5a67d8;
+      color: white;
+      border-color: #5a67d8;
+    }
+    
+    body.dark-mode .flow-step.break.active {
+      background: #48bb78;
+      border-color: #48bb78;
+    }
+    
+    body.dark-mode #start {
+      background: #5a67d8;
+      color: white;
+    }
+    
+    body.dark-mode #start:hover {
+      background: #4c51bf;
+    }
+    
+    body.dark-mode #start:disabled {
+      background: #2d3748;
+      color: #718096;
+    }
+    
+    body.dark-mode #stop {
+      background: #16213e;
+      color: #adb5bd;
+      border-color: #0f3460;
+    }
+    
+    body.dark-mode #stop:hover {
+      background: #0f3460;
+      border-color: #1a365d;
+    }
+    
+    body.dark-mode #settings {
+      background: #16213e;
+      color: #adb5bd;
+      border-color: #0f3460;
+    }
+    
+    body.dark-mode #settings:hover {
+      background: #0f3460;
+      border-color: #1a365d;
+    }
+    
+    body.dark-mode #dark-mode-toggle {
+      background: #16213e;
+      color: #adb5bd;
+      border-color: #0f3460;
+    }
+    
+    body.dark-mode #dark-mode-toggle:hover {
+      background: #0f3460;
+      border-color: #1a365d;
+    }
+    
+    body.dark-mode #loop-toggle {
+      background: #16213e;
+      color: #adb5bd;
+      border-color: #0f3460;
+    }
+    
+    body.dark-mode #loop-toggle:hover {
+      background: #0f3460;
+      border-color: #1a365d;
+    }
+    
+    body.dark-mode #loop-toggle.enabled {
+      background: #2d3748;
+      color: #5a67d8;
+      border-color: #4a5568;
+    }
+    
+    body.dark-mode #loop-toggle.enabled:hover {
+      background: #374151;
+    }
+    
+    body.dark-mode .stats {
+      background: #16213e;
+      border-color: #0f3460;
+    }
+    
+    body.dark-mode .stat-item {
+      color: #adb5bd;
+    }
+    
+    body.dark-mode .stat-value {
+      color: #e0e0e0;
+    }
+    
+    body.dark-mode .tagline {
+      color: #adb5bd;
+    }
+    
+    /* Dark mode + Focus state */
+    body.dark-mode.focusing {
+      background: #1e1b4b;
+    }
+    
+    body.dark-mode.focusing .timer-section {
+      border-color: #4c51bf;
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+    }
+    
+    body.dark-mode.focusing #time {
+      color: #818cf8;
+    }
+    
+    /* Dark mode + Break state */
+    body.dark-mode.break {
+      background: #064e3b;
+    }
+    
+    body.dark-mode.break .timer-section {
+      border-color: #10b981;
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+    }
+    
+    body.dark-mode.break #time {
+      color: #34d399;
+    }
+    
+    body.dark-mode .break-info {
+      background: #064e3b;
+      border-color: #10b981;
+      color: #d1fae5;
+    }
   </style>
 </head>
 <body>
@@ -325,6 +498,9 @@
       <button id="loop-toggle">
         <span class="loop-icon">↻</span>
         <span id="loop-text">Loop</span>
+      </button>
+      <button id="dark-mode-toggle">
+        <span id="dark-mode-icon">🌙</span>
       </button>
       <button id="settings">Settings</button>
     </div>

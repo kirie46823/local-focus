@@ -1,9 +1,38 @@
 const KEYS = {
   blocklist: "blocklist",
   focusMinutes: "focusMinutes",
-  breakMinutes: "breakMinutes"
+  breakMinutes: "breakMinutes",
+  darkMode: "darkMode"
 };
 const $ = (id) => document.getElementById(id);
+
+// ========== Dark Mode Toggle ==========
+async function initDarkMode() {
+  const { darkMode = false } = await chrome.storage.local.get([KEYS.darkMode]);
+  updateDarkModeUI(darkMode);
+}
+
+function updateDarkModeUI(enabled) {
+  const icon = $("dark-mode-icon");
+  const text = $("dark-mode-text");
+  
+  if (enabled) {
+    document.body.classList.add("dark-mode");
+    icon.textContent = "☀️";
+    text.textContent = "Light Mode";
+  } else {
+    document.body.classList.remove("dark-mode");
+    icon.textContent = "🌙";
+    text.textContent = "Dark Mode";
+  }
+}
+
+$("dark-mode-toggle").onclick = async () => {
+  const { darkMode = false } = await chrome.storage.local.get([KEYS.darkMode]);
+  const newValue = !darkMode;
+  await chrome.storage.local.set({ [KEYS.darkMode]: newValue });
+  updateDarkModeUI(newValue);
+};
 
 // ========== Load settings on page load ==========
 async function loadSettings() {
@@ -90,5 +119,6 @@ async function render() {
 }
 
 // ========== Initialize ==========
+initDarkMode();
 loadSettings();
 render();

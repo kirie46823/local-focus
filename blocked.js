@@ -7,6 +7,20 @@ const modeEl = document.getElementById("mode");
 const backBtn = document.getElementById("back");
 const openPopupBtn = document.getElementById("open-popup");
 
+// ダークモード初期化
+async function initDarkMode() {
+  try {
+    const { darkMode = false } = await chrome.storage.local.get(["darkMode"]);
+    if (darkMode) {
+      document.body.classList.add("dark-mode");
+    }
+  } catch (e) {
+    console.error("Failed to load dark mode setting:", e);
+  }
+}
+
+initDarkMode();
+
 // サイト情報表示
 if (site) {
   siteEl.textContent = `🚫 ${site}`;
