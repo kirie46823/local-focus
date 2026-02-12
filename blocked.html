@@ -3,19 +3,102 @@
 <head>
   <meta charset="utf-8" />
   <style>
-    body { font-family: system-ui; padding: 28px; }
-    h2 { margin: 0 0 10px; }
-    .muted { opacity: .7; }
-    button { padding: 8px 12px; margin-top: 14px; }
+    body { 
+      font-family: system-ui; 
+      padding: 40px; 
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    h1 { 
+      margin: 0 0 8px; 
+      font-size: 32px;
+      font-weight: 700;
+    }
+    h2 { 
+      margin: 0 0 20px; 
+      font-size: 18px;
+      font-weight: 400;
+      color: #666;
+    }
+    .emoji {
+      font-size: 64px;
+      margin-bottom: 20px;
+    }
+    .site-info {
+      background: #f5f5f5;
+      padding: 12px 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      font-size: 14px;
+      color: #666;
+    }
+    .time-remaining {
+      font-size: 48px;
+      font-weight: 700;
+      margin: 24px 0;
+      color: #333;
+    }
+    .mode-label {
+      font-size: 16px;
+      color: #888;
+      margin-bottom: 24px;
+    }
+    .actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 32px;
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 14px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    #back {
+      background: #f0f0f0;
+      color: #333;
+    }
+    #back:hover {
+      background: #e0e0e0;
+    }
+    #open-popup {
+      background: #007bff;
+      color: white;
+    }
+    #open-popup:hover {
+      background: #0056b3;
+    }
+    .tip {
+      margin-top: 32px;
+      font-size: 13px;
+      color: #999;
+      line-height: 1.6;
+    }
   </style>
 </head>
 <body>
-  <h2>This site is blocked</h2>
-  <div id="site" class="muted"></div>
-  <div id="remaining" class="muted" style="margin-top:8px;"></div>
-<div id="mode" class="muted" style="margin-top:4px;"></div>
+  <div class="emoji">🎯</div>
+  <h1>Stay Focused</h1>
+  <h2>This site is blocked during your focus session</h2>
+  
+  <div class="site-info" id="site"></div>
+  
+  <div class="time-remaining" id="remaining">--:--</div>
+  <div class="mode-label" id="mode"></div>
 
-  <button id="back">Go back</button>
+  <div class="actions">
+    <button id="back">← Go Back</button>
+    <button id="open-popup">⚙️ Manage Session</button>
+  </div>
+
+  <div class="tip">
+    💡 Tip: Click the extension icon in your toolbar to stop or adjust your focus session
+  </div>
 
   <script src="blocked.js"></script>
 </body>
