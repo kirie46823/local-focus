@@ -61,6 +61,12 @@ async function updateDarkModeUI(enabled) {
   }
 }
 
+// ダークモード初期化（最初に1回だけ実行）
+async function initDarkMode() {
+  const { darkMode = false } = await chrome.storage.local.get([KEYS.darkMode]);
+  await updateDarkModeUI(darkMode);
+}
+
 // ループUI更新
 async function updateLoopUI(enabled) {
   const btn = $("loop-toggle");
@@ -91,9 +97,8 @@ async function render() {
     const res = await sendMessage({ type: "GET_STATE" });
 
     // ループ設定の読み込み
-    const { loopEnabled = false, darkMode = false } = await chrome.storage.local.get([KEYS.loopEnabled, KEYS.darkMode]);
+    const { loopEnabled = false } = await chrome.storage.local.get([KEYS.loopEnabled]);
     await updateLoopUI(loopEnabled);
-    await updateDarkModeUI(darkMode);
     const { focusing = false, endsAt = null, blocklist = [], sessionType = null } = res?.state || {};
 
     // フロー表示の更新
@@ -129,5 +134,7 @@ async function render() {
   }
 }
 
+// 初期化
+initDarkMode();
 render();
 setInterval(render, 500);
