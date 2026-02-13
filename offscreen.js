@@ -68,6 +68,7 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
           osc2.stop(audioContext.currentTime + 0.5);
         }, 100);
         
+        console.log("Notification sound played");
         sendResponse({ ok: true });
       } catch (e) {
         console.error("Notification sound error:", e);
