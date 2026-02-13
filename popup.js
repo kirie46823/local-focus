@@ -112,7 +112,8 @@ async function render() {
       const { focusMinutes = 25 } = await chrome.storage.local.get(["focusMinutes"]);
       $("time").textContent = formatMMSS(focusMinutes * 60 * 1000);
       $("status").textContent = `Idle / blocked sites: ${blocklist.length}`;
-      document.body.className = "";
+      // ダークモードを保持しながらfocus/breakクラスを削除
+      document.body.classList.remove("focusing", "break");
       return;
     }
 
@@ -121,11 +122,15 @@ async function render() {
     
     // 背景色とフロー表示
     if (sessionType === "break") {
-      document.body.className = "break-mode";
+      // ダークモードを保持しながらbreakクラスを追加
+      document.body.classList.remove("focusing");
+      document.body.classList.add("break");
       if (breakStep) breakStep.classList.add("active");
       $("status").textContent = `Break… / blocked sites: ${blocklist.length}`;
     } else {
-      document.body.className = "focus-mode";
+      // ダークモードを保持しながらfocusingクラスを追加
+      document.body.classList.remove("break");
+      document.body.classList.add("focusing");
       if (focusStep) focusStep.classList.add("active");
       $("status").textContent = `Focusing… / blocked sites: ${blocklist.length}`;
     }
