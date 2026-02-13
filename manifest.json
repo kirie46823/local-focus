@@ -1,11 +1,12 @@
 {
   "manifest_version": 3,
-  "name": "Local Focus",
+  "name": "__MSG_extName__",
   "version": "0.1.0",
-  "description": "Privacy-first Pomodoro timer. No accounts, no tracking, no cloud. Just focus.",
+  "description": "__MSG_extDescription__",
+  "default_locale": "en",
   "action": { 
     "default_popup": "popup.html",
-    "default_title": "Local Focus"
+    "default_title": "__MSG_extName__"
   },
   "icons": {
     "16": "icon.png",

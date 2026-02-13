@@ -1,0 +1,260 @@
+{
+  "extName": {
+    "message": "Local Focus",
+    "description": "Name der Erweiterung"
+  },
+  "extDescription": {
+    "message": "Datenschutz-orientierter Pomodoro-Timer. Keine Konten, kein Tracking, keine Cloud. Einfach fokussieren.",
+    "description": "Beschreibung der Erweiterung"
+  },
+  "tagline": {
+    "message": "Fokus bleibt auf Ihrem Gerät",
+    "description": "Slogan im Popup-Header"
+  },
+  "philosophy": {
+    "message": "Offline. Privat. Kein Tracking.",
+    "description": "Datenschutz-Philosophie-Nachricht"
+  },
+  "readyToFocus": {
+    "message": "Bereit zu fokussieren",
+    "description": "Status im Leerlauf"
+  },
+  "startButton": {
+    "message": "$MINUTES$min starten",
+    "description": "Fokus-Start-Button-Text",
+    "placeholders": {
+      "minutes": {
+        "content": "$1",
+        "example": "25"
+      }
+    }
+  },
+  "stopButton": {
+    "message": "Stopp",
+    "description": "Stopp-Button-Text"
+  },
+  "loopOn": {
+    "message": "Schleife EIN",
+    "description": "Schleifenmodus aktiviert"
+  },
+  "loopOff": {
+    "message": "Schleife AUS",
+    "description": "Schleifenmodus deaktiviert"
+  },
+  "settingsButton": {
+    "message": "Einstellungen",
+    "description": "Einstellungen-Button-Text"
+  },
+  "blockedSites": {
+    "message": "Blockierte Sites",
+    "description": "Blockierte Sites-Label"
+  },
+  "statusLabel": {
+    "message": "Status",
+    "description": "Status-Label"
+  },
+  "statusIdle": {
+    "message": "Inaktiv",
+    "description": "Inaktiv-Status"
+  },
+  "statusFocusing": {
+    "message": "Fokussiert…",
+    "description": "Fokussiert-Status"
+  },
+  "statusBreak": {
+    "message": "Pause…",
+    "description": "Pause-Status"
+  },
+  "flowFocus": {
+    "message": "Fokus $MINUTES$min",
+    "description": "Fokus-Flow-Schritt",
+    "placeholders": {
+      "minutes": {
+        "content": "$1",
+        "example": "25"
+      }
+    }
+  },
+  "flowBreak": {
+    "message": "Pause $MINUTES$min",
+    "description": "Pause-Flow-Schritt",
+    "placeholders": {
+      "minutes": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "breakInfo": {
+    "message": "☕ Machen Sie eine Pause! Sites sind während der Pause entsperrt.",
+    "description": "Pausenzeit-Information"
+  },
+  "optionsTitle": {
+    "message": "Local Focus – Einstellungen",
+    "description": "Titel der Einstellungsseite"
+  },
+  "timerSettings": {
+    "message": "⏱️ Timer-Einstellungen",
+    "description": "Titel des Timer-Einstellungsbereichs"
+  },
+  "focusDuration": {
+    "message": "Fokusdauer (Minuten)",
+    "description": "Fokusdauer-Label"
+  },
+  "focusDurationHint": {
+    "message": "Standard: 25 Minuten (Bereich: 1-60)",
+    "description": "Fokusdauer-Hinweis"
+  },
+  "breakDuration": {
+    "message": "Pausendauer (Minuten)",
+    "description": "Pausendauer-Label"
+  },
+  "breakDurationHint": {
+    "message": "Standard: 5 Minuten (Bereich: 1-30)",
+    "description": "Pausendauer-Hinweis"
+  },
+  "saveTimerSettings": {
+    "message": "Timer-Einstellungen speichern",
+    "description": "Timer-Einstellungen-Speichern-Button"
+  },
+  "saved": {
+    "message": "✓ Gespeichert!",
+    "description": "Gespeichert-Bestätigungsnachricht"
+  },
+  "blockList": {
+    "message": "🚫 Blockliste",
+    "description": "Titel des Blockliste-Bereichs"
+  },
+  "blockListDescription": {
+    "message": "Domains hinzufügen, die während Fokussitzungen blockiert werden:",
+    "description": "Blockliste-Beschreibung"
+  },
+  "domainPlaceholder": {
+    "message": "twitter.com",
+    "description": "Domain-Eingabe-Platzhalter"
+  },
+  "addButton": {
+    "message": "Hinzufügen",
+    "description": "Hinzufügen-Button-Text"
+  },
+  "removeButton": {
+    "message": "Entfernen",
+    "description": "Entfernen-Button-Text"
+  },
+  "emptyList": {
+    "message": "(leer)",
+    "description": "Leere-Liste-Nachricht"
+  },
+  "darkMode": {
+    "message": "Dunkler Modus",
+    "description": "Dunkler-Modus-Button-Text"
+  },
+  "lightMode": {
+    "message": "Heller Modus",
+    "description": "Heller-Modus-Button-Text"
+  },
+  "blockedTitle": {
+    "message": "Fokussiert bleiben",
+    "description": "Blockierte-Seite-Titel"
+  },
+  "blockedSubtitle": {
+    "message": "Diese Site ist während Ihrer Fokussitzung blockiert",
+    "description": "Blockierte-Seite-Untertitel"
+  },
+  "blockedSiteLabel": {
+    "message": "🚫 $SITE$",
+    "description": "Blockierte-Site-Label",
+    "placeholders": {
+      "site": {
+        "content": "$1",
+        "example": "twitter.com"
+      }
+    }
+  },
+  "blockedSiteDefault": {
+    "message": "Diese Site ist derzeit blockiert",
+    "description": "Standard-Blockierte-Site-Nachricht"
+  },
+  "goBack": {
+    "message": "← Zurück",
+    "description": "Zurück-Button"
+  },
+  "manageSession": {
+    "message": "⚙️ Sitzung verwalten",
+    "description": "Sitzung-verwalten-Button"
+  },
+  "blockedTip": {
+    "message": "💡 Tipp: Klicken Sie auf das Erweiterungs-Symbol in Ihrer Symbolleiste, um Ihre Fokussitzung zu stoppen oder anzupassen",
+    "description": "Blockierte-Seite-Tipp"
+  },
+  "noActiveSession": {
+    "message": "Keine aktive Sitzung",
+    "description": "Keine-aktive-Sitzung-Nachricht"
+  },
+  "sessionEnded": {
+    "message": "Sitzung beendet",
+    "description": "Sitzung-beendet-Nachricht"
+  },
+  "focusMode": {
+    "message": "🔥 Fokusmodus",
+    "description": "Fokusmodus-Label"
+  },
+  "breakTime": {
+    "message": "☕ Pausenzeit",
+    "description": "Pausenzeit-Label"
+  },
+  "errorLoading": {
+    "message": "Fehler beim Laden der Sitzungsdaten",
+    "description": "Fehler-beim-Laden-Nachricht"
+  },
+  "notifBreakTitle": {
+    "message": "☕ Zeit für eine Pause!",
+    "description": "Pausen-Benachrichtigung-Titel"
+  },
+  "notifBreakMessage": {
+    "message": "Tolle Fokussitzung! Machen Sie eine $MINUTES$-minütige Pause.",
+    "description": "Pausen-Benachrichtigung-Nachricht",
+    "placeholders": {
+      "minutes": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "notifFocusTitle": {
+    "message": "🔥 Bereit, wieder zu fokussieren!",
+    "description": "Fokus-wieder-bereit-Benachrichtigung-Titel"
+  },
+  "notifFocusMessage": {
+    "message": "Nächste Fokussitzung beginnt.",
+    "description": "Fokus-Start-Benachrichtigung-Nachricht"
+  },
+  "notifCompleteTitle": {
+    "message": "✓ Sitzung abgeschlossen!",
+    "description": "Sitzung-abgeschlossen-Benachrichtigung-Titel"
+  },
+  "notifCompleteMessage": {
+    "message": "Gute Arbeit! Sie können jederzeit eine neue Sitzung starten.",
+    "description": "Sitzung-abgeschlossen-Benachrichtigung-Nachricht"
+  },
+  "philosophyLong": {
+    "message": "Local Focus ist für ruhiges Arbeiten konzipiert.",
+    "description": "Langer Philosophie-Titel"
+  },
+  "philosophyNoAccounts": {
+    "message": "Keine Konten.",
+    "description": "Keine-Konten-Prinzip"
+  },
+  "philosophyNoTracking": {
+    "message": "Kein Tracking.",
+    "description": "Kein-Tracking-Prinzip"
+  },
+  "philosophyNoCloud": {
+    "message": "Keine Cloud.",
+    "description": "Keine-Cloud-Prinzip"
+  },
+  "philosophyJustFocus": {
+    "message": "Einfach fokussieren.",
+    "description": "Einfach-fokussieren-Slogan"
+  }
+}

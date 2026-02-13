@@ -504,7 +504,7 @@
   <div class="container">
     <div class="header">
       <div class="logo">◐</div>
-      <div class="tagline">Focus stays on your device</div>
+      <div class="tagline" data-i18n="tagline">Focus stays on your device</div>
     </div>
     
     <!-- ポモドーロフロー表示 -->
@@ -516,7 +516,7 @@
     </div>
     
     <!-- Break中の説明 -->
-    <div class="break-info">
+    <div class="break-info" data-i18n="breakInfo">
       ☕ Take a break! Sites are unblocked during break time.
     </div>
     
@@ -527,7 +527,7 @@
     
     <div class="controls">
       <button id="start">Start 25m</button>
-      <button id="stop">Stop</button>
+      <button id="stop" data-i18n="stopButton">Stop</button>
     </div>
     
     <div class="secondary-controls">
@@ -538,16 +538,16 @@
       <button id="dark-mode-toggle">
         <span id="dark-mode-icon">🌙</span>
       </button>
-      <button id="settings">Settings</button>
+      <button id="settings" data-i18n="settingsButton">Settings</button>
     </div>
     
     <div class="stats">
       <div class="stat-item">
-        <span class="stat-label">Blocked sites</span>
+        <span class="stat-label" data-i18n="blockedSites">Blocked sites</span>
         <span class="stat-value" id="blocked-count">0</span>
       </div>
       <div class="stat-item">
-        <span class="stat-label">Status</span>
+        <span class="stat-label" data-i18n="statusLabel">Status</span>
         <span class="stat-value" id="mode-label">Idle</span>
       </div>
     </div>
@@ -555,11 +555,12 @@
     <!-- Philosophy Section -->
     <div class="philosophy">
       <div class="philosophy-content">
-        <span class="highlight">Offline. Private. No tracking.</span>
+        <span class="highlight" data-i18n="philosophy">Offline. Private. No tracking.</span>
       </div>
     </div>
   </div>
 
+  <script src="i18n.js"></script>
   <script src="popup.js"></script>
 </body>
 </html>

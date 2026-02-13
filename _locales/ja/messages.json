@@ -1,0 +1,260 @@
+{
+  "extName": {
+    "message": "Local Focus",
+    "description": "拡張機能名"
+  },
+  "extDescription": {
+    "message": "プライバシー重視のポモドーロタイマー。アカウント不要、追跡なし、クラウドなし。集中するだけ。",
+    "description": "拡張機能の説明"
+  },
+  "tagline": {
+    "message": "集中はデバイスに留まる",
+    "description": "ポップアップヘッダーのタグライン"
+  },
+  "philosophy": {
+    "message": "オフライン。プライベート。追跡なし。",
+    "description": "プライバシー思想メッセージ"
+  },
+  "readyToFocus": {
+    "message": "集中の準備完了",
+    "description": "待機中のステータス"
+  },
+  "startButton": {
+    "message": "$MINUTES$分 開始",
+    "description": "集中開始ボタンのテキスト",
+    "placeholders": {
+      "minutes": {
+        "content": "$1",
+        "example": "25"
+      }
+    }
+  },
+  "stopButton": {
+    "message": "停止",
+    "description": "停止ボタンのテキスト"
+  },
+  "loopOn": {
+    "message": "ループ ON",
+    "description": "ループモード有効"
+  },
+  "loopOff": {
+    "message": "ループ OFF",
+    "description": "ループモード無効"
+  },
+  "settingsButton": {
+    "message": "設定",
+    "description": "設定ボタンのテキスト"
+  },
+  "blockedSites": {
+    "message": "ブロック中",
+    "description": "ブロック中サイト数ラベル"
+  },
+  "statusLabel": {
+    "message": "状態",
+    "description": "状態ラベル"
+  },
+  "statusIdle": {
+    "message": "待機中",
+    "description": "待機ステータス"
+  },
+  "statusFocusing": {
+    "message": "集中中…",
+    "description": "集中ステータス"
+  },
+  "statusBreak": {
+    "message": "休憩中…",
+    "description": "休憩ステータス"
+  },
+  "flowFocus": {
+    "message": "集中 $MINUTES$分",
+    "description": "集中フローステップ",
+    "placeholders": {
+      "minutes": {
+        "content": "$1",
+        "example": "25"
+      }
+    }
+  },
+  "flowBreak": {
+    "message": "休憩 $MINUTES$分",
+    "description": "休憩フローステップ",
+    "placeholders": {
+      "minutes": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "breakInfo": {
+    "message": "☕ 休憩しましょう！休憩中はサイトのブロックが解除されます。",
+    "description": "休憩時間の情報"
+  },
+  "optionsTitle": {
+    "message": "Local Focus – 設定",
+    "description": "設定ページのタイトル"
+  },
+  "timerSettings": {
+    "message": "⏱️ タイマー設定",
+    "description": "タイマー設定セクションのタイトル"
+  },
+  "focusDuration": {
+    "message": "集中時間（分）",
+    "description": "集中時間のラベル"
+  },
+  "focusDurationHint": {
+    "message": "デフォルト: 25分（範囲: 1-60）",
+    "description": "集中時間のヒント"
+  },
+  "breakDuration": {
+    "message": "休憩時間（分）",
+    "description": "休憩時間のラベル"
+  },
+  "breakDurationHint": {
+    "message": "デフォルト: 5分（範囲: 1-30）",
+    "description": "休憩時間のヒント"
+  },
+  "saveTimerSettings": {
+    "message": "タイマー設定を保存",
+    "description": "タイマー設定保存ボタン"
+  },
+  "saved": {
+    "message": "✓ 保存しました！",
+    "description": "保存確認メッセージ"
+  },
+  "blockList": {
+    "message": "🚫 ブロックリスト",
+    "description": "ブロックリストセクションのタイトル"
+  },
+  "blockListDescription": {
+    "message": "集中セッション中にブロックするドメインを追加：",
+    "description": "ブロックリストの説明"
+  },
+  "domainPlaceholder": {
+    "message": "twitter.com",
+    "description": "ドメイン入力のプレースホルダー"
+  },
+  "addButton": {
+    "message": "追加",
+    "description": "追加ボタンのテキスト"
+  },
+  "removeButton": {
+    "message": "削除",
+    "description": "削除ボタンのテキスト"
+  },
+  "emptyList": {
+    "message": "（空）",
+    "description": "空リストメッセージ"
+  },
+  "darkMode": {
+    "message": "ダークモード",
+    "description": "ダークモードボタンのテキスト"
+  },
+  "lightMode": {
+    "message": "ライトモード",
+    "description": "ライトモードボタンのテキスト"
+  },
+  "blockedTitle": {
+    "message": "集中を維持",
+    "description": "ブロックページのタイトル"
+  },
+  "blockedSubtitle": {
+    "message": "このサイトは集中セッション中にブロックされています",
+    "description": "ブロックページのサブタイトル"
+  },
+  "blockedSiteLabel": {
+    "message": "🚫 $SITE$",
+    "description": "ブロックサイトラベル",
+    "placeholders": {
+      "site": {
+        "content": "$1",
+        "example": "twitter.com"
+      }
+    }
+  },
+  "blockedSiteDefault": {
+    "message": "このサイトは現在ブロックされています",
+    "description": "デフォルトブロックサイトメッセージ"
+  },
+  "goBack": {
+    "message": "← 戻る",
+    "description": "戻るボタン"
+  },
+  "manageSession": {
+    "message": "⚙️ セッション管理",
+    "description": "セッション管理ボタン"
+  },
+  "blockedTip": {
+    "message": "💡 ヒント：ツールバーの拡張機能アイコンをクリックして、集中セッションを停止または調整できます",
+    "description": "ブロックページのヒント"
+  },
+  "noActiveSession": {
+    "message": "アクティブなセッションなし",
+    "description": "アクティブセッションなしメッセージ"
+  },
+  "sessionEnded": {
+    "message": "セッション終了",
+    "description": "セッション終了メッセージ"
+  },
+  "focusMode": {
+    "message": "🔥 集中モード",
+    "description": "集中モードラベル"
+  },
+  "breakTime": {
+    "message": "☕ 休憩時間",
+    "description": "休憩時間ラベル"
+  },
+  "errorLoading": {
+    "message": "セッションデータの読み込みエラー",
+    "description": "読み込みエラーメッセージ"
+  },
+  "notifBreakTitle": {
+    "message": "☕ 休憩の時間です！",
+    "description": "休憩通知のタイトル"
+  },
+  "notifBreakMessage": {
+    "message": "お疲れ様でした！$MINUTES$分間休憩しましょう。",
+    "description": "休憩通知のメッセージ",
+    "placeholders": {
+      "minutes": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "notifFocusTitle": {
+    "message": "🔥 次の集中タイム！",
+    "description": "集中再開通知のタイトル"
+  },
+  "notifFocusMessage": {
+    "message": "次の集中セッションを開始します。",
+    "description": "集中開始通知のメッセージ"
+  },
+  "notifCompleteTitle": {
+    "message": "✓ セッション完了！",
+    "description": "セッション完了通知のタイトル"
+  },
+  "notifCompleteMessage": {
+    "message": "お疲れ様でした！いつでも新しいセッションを開始できます。",
+    "description": "セッション完了通知のメッセージ"
+  },
+  "philosophyLong": {
+    "message": "Local Focusは静かな作業のために設計されています。",
+    "description": "長い思想タイトル"
+  },
+  "philosophyNoAccounts": {
+    "message": "アカウント不要。",
+    "description": "アカウント不要の原則"
+  },
+  "philosophyNoTracking": {
+    "message": "追跡なし。",
+    "description": "追跡なしの原則"
+  },
+  "philosophyNoCloud": {
+    "message": "クラウドなし。",
+    "description": "クラウドなしの原則"
+  },
+  "philosophyJustFocus": {
+    "message": "ただ集中する。",
+    "description": "ただ集中するタグライン"
+  }
+}
