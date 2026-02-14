@@ -265,8 +265,12 @@ async function playAmbient() {
   // "none"の場合は音を再生しない
   if (ambientSound === "none") return;
   
-  await ensureOffscreen();
-  await chrome.runtime.sendMessage({ type: "AUDIO_PLAY", sound: ambientSound });
+  try {
+    await ensureOffscreen();
+    await chrome.runtime.sendMessage({ type: "AUDIO_PLAY", sound: ambientSound });
+  } catch (e) {
+    console.error("Failed to play ambient sound:", e);
+  }
 }
 
 async function stopAmbient() {
