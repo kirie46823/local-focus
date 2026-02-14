@@ -2,7 +2,8 @@ const KEYS = {
   blocklist: "blocklist",
   focusMinutes: "focusMinutes",
   breakMinutes: "breakMinutes",
-  darkMode: "darkMode"
+  darkMode: "darkMode",
+  ambientSound: "ambientSound"
 };
 const $ = (id) => document.getElementById(id);
 // i18n function is provided by i18n.js
@@ -39,11 +40,20 @@ $("dark-mode-toggle").onclick = async () => {
 async function loadSettings() {
   const {
     focusMinutes = 25,
-    breakMinutes = 5
-  } = await chrome.storage.local.get([KEYS.focusMinutes, KEYS.breakMinutes]);
+    breakMinutes = 5,
+    ambientSound = "rain"
+  } = await chrome.storage.local.get([KEYS.focusMinutes, KEYS.breakMinutes, KEYS.ambientSound]);
 
   $("focusMinutes").value = focusMinutes;
   $("breakMinutes").value = breakMinutes;
+  
+  // Load ambient sound radio button
+  const radios = document.querySelectorAll('input[name="ambientSound"]');
+  radios.forEach(radio => {
+    if (radio.value === ambientSound) {
+      radio.checked = true;
+    }
+  });
 }
 
 // ========== Save timer settings ==========
@@ -64,6 +74,23 @@ $("saveTimers").onclick = async () => {
   }, 2000);
 
   console.log("Timer settings saved:", { focusMinutes, breakMinutes });
+};
+
+// ========== Save ambient sound settings ==========
+$("saveSound").onclick = async () => {
+  const selected = document.querySelector('input[name="ambientSound"]:checked');
+  const ambientSound = selected ? selected.value : "rain";
+  
+  await chrome.storage.local.set({ [KEYS.ambientSound]: ambientSound });
+  
+  // Show confirmation
+  const status = $("soundSaveStatus");
+  status.textContent = i18n("saved");
+  setTimeout(() => {
+    status.textContent = "";
+  }, 2000);
+  
+  console.log("Ambient sound saved:", ambientSound);
 };
 
 // ========== Block list management ==========

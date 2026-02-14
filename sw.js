@@ -5,7 +5,8 @@ const KEYS = {
   sessionType: "sessionType",  // "focus" | "break" | null
   focusMinutes: "focusMinutes", // number (default 25)
   breakMinutes: "breakMinutes",  // number (default 5)
-  loopEnabled: "loopEnabled"    // boolean (default false)
+  loopEnabled: "loopEnabled",    // boolean (default false)
+  ambientSound: "ambientSound"   // string: "rain" | "brown" | "none" (default "rain")
 };
 
 
@@ -13,12 +14,13 @@ const ALARM_NAME = "focusEnd";
 const RULE_BASE = 1000;
 
 chrome.runtime.onInstalled.addListener(async () => {
-  const cur = await chrome.storage.local.get([KEYS.blocklist, KEYS.focusing, KEYS.endsAt, KEYS.sessionType, KEYS.loopEnabled]);
+  const cur = await chrome.storage.local.get([KEYS.blocklist, KEYS.focusing, KEYS.endsAt, KEYS.sessionType, KEYS.loopEnabled, KEYS.ambientSound]);
   if (!Array.isArray(cur[KEYS.blocklist])) await chrome.storage.local.set({ [KEYS.blocklist]: [] });
   if (typeof cur[KEYS.focusing] !== "boolean") await chrome.storage.local.set({ [KEYS.focusing]: false });
   if (cur[KEYS.endsAt] === undefined) await chrome.storage.local.set({ [KEYS.endsAt]: null });
   if (cur[KEYS.sessionType] === undefined) await chrome.storage.local.set({ [KEYS.sessionType]: null });
   if (cur[KEYS.loopEnabled] === undefined) await chrome.storage.local.set({ [KEYS.loopEnabled]: false });
+  if (cur[KEYS.ambientSound] === undefined) await chrome.storage.local.set({ [KEYS.ambientSound]: "rain" });
 
   await syncRules();
 });
@@ -259,8 +261,12 @@ async function ensureOffscreen() {
 }
 
 async function playAmbient() {
+  const { ambientSound = "rain" } = await chrome.storage.local.get([KEYS.ambientSound]);
+  // "none"の場合は音を再生しない
+  if (ambientSound === "none") return;
+  
   await ensureOffscreen();
-  await chrome.runtime.sendMessage({ type: "AUDIO_PLAY" });
+  await chrome.runtime.sendMessage({ type: "AUDIO_PLAY", sound: ambientSound });
 }
 
 async function stopAmbient() {

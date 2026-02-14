@@ -256,5 +256,29 @@
   "philosophyJustFocus": {
     "message": "Einfach fokussieren.",
     "description": "Einfach-fokussieren-Slogan"
+  },
+  "ambientSoundSettings": {
+    "message": "🎵 Umgebungsgeräusche",
+    "description": "Umgebungsgeräusche-Einstellungs-Abschnittstitel"
+  },
+  "ambientSoundDescription": {
+    "message": "Wählen Sie Hintergrundgeräusche für Fokussitzungen:",
+    "description": "Umgebungsgeräusche-Beschreibung"
+  },
+  "soundRain": {
+    "message": "Regen",
+    "description": "Regen-Sound-Option"
+  },
+  "soundBrown": {
+    "message": "Braunes Rauschen",
+    "description": "Braunes-Rauschen-Sound-Option"
+  },
+  "soundNone": {
+    "message": "Keine (Still)",
+    "description": "Keine-Sound-Option"
+  },
+  "saveSoundSettings": {
+    "message": "Soundeinstellungen speichern",
+    "description": "Sound-Einstellungen-speichern-Button"
   }
 }

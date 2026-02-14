@@ -252,6 +252,30 @@
     <span id="saveStatus" style="margin-left: 12px; color: #48bb78;"></span>
   </section>
 
+  <!-- Ambient Sound Settings -->
+  <section>
+    <h3 data-i18n="ambientSoundSettings">🎵 Ambient Sound</h3>
+    <p data-i18n="ambientSoundDescription">Choose background sound during focus sessions:</p>
+    
+    <label>
+      <input type="radio" name="ambientSound" value="rain" />
+      <span data-i18n="soundRain">Rain</span>
+    </label>
+    
+    <label style="display: block; margin-top: 8px;">
+      <input type="radio" name="ambientSound" value="brown" />
+      <span data-i18n="soundBrown">Brown Noise</span>
+    </label>
+    
+    <label style="display: block; margin-top: 8px;">
+      <input type="radio" name="ambientSound" value="none" />
+      <span data-i18n="soundNone">None (Silent)</span>
+    </label>
+    
+    <button class="save-btn" id="saveSound" data-i18n="saveSoundSettings" style="margin-top: 16px;">Save Sound Settings</button>
+    <span id="soundSaveStatus" style="margin-left: 12px; color: #48bb78;"></span>
+  </section>
+
   <!-- Block List -->
   <section>
     <h3 data-i18n="blockList">🚫 Block List</h3>

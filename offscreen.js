@@ -12,8 +12,9 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
 
   (async () => {
     if (msg?.type === "AUDIO_PLAY") {
-      if (!audio) {
-        audio = new Audio(chrome.runtime.getURL("audio/rain.mp3"));
+      const soundFile = msg?.sound || "rain"; // デフォルトはrain
+      if (!audio || audio.src !== chrome.runtime.getURL(`audio/${soundFile}.mp3`)) {
+        audio = new Audio(chrome.runtime.getURL(`audio/${soundFile}.mp3`));
         audio.loop = true;
       }
       try {

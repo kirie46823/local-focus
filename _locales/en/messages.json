@@ -256,5 +256,29 @@
   "philosophyJustFocus": {
     "message": "Just focus.",
     "description": "Just focus tagline"
+  },
+  "ambientSoundSettings": {
+    "message": "🎵 Ambient Sound",
+    "description": "Ambient sound settings section title"
+  },
+  "ambientSoundDescription": {
+    "message": "Choose background sound during focus sessions:",
+    "description": "Ambient sound description"
+  },
+  "soundRain": {
+    "message": "Rain",
+    "description": "Rain sound option"
+  },
+  "soundBrown": {
+    "message": "Brown Noise",
+    "description": "Brown noise sound option"
+  },
+  "soundNone": {
+    "message": "None (Silent)",
+    "description": "No sound option"
+  },
+  "saveSoundSettings": {
+    "message": "Save Sound Settings",
+    "description": "Save sound settings button"
   }
 }

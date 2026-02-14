@@ -256,5 +256,29 @@
   "philosophyJustFocus": {
     "message": "ただ集中する。",
     "description": "ただ集中するタグライン"
+  },
+  "ambientSoundSettings": {
+    "message": "🎵 環境音",
+    "description": "環境音設定セクションのタイトル"
+  },
+  "ambientSoundDescription": {
+    "message": "集中セッション中のバックグラウンドサウンドを選択：",
+    "description": "環境音の説明"
+  },
+  "soundRain": {
+    "message": "雨音",
+    "description": "雨音オプション"
+  },
+  "soundBrown": {
+    "message": "ブラウンノイズ",
+    "description": "ブラウンノイズオプション"
+  },
+  "soundNone": {
+    "message": "なし（無音）",
+    "description": "無音オプション"
+  },
+  "saveSoundSettings": {
+    "message": "音設定を保存",
+    "description": "音設定保存ボタン"
   }
 }
