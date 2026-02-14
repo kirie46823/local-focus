@@ -114,8 +114,8 @@ async function render() {
     if (breakStep) breakStep.classList.remove("active");
 
     if (!focusing || !endsAt || endsAt <= Date.now()) {
-      // 設定から Focus 時間を取得して表示
-      const { focusMinutes = 25 } = await chrome.storage.local.get(["focusMinutes"]);
+      // 設定から Focus/Break 時間を取得して表示
+      const { focusMinutes = 25, breakMinutes = 5 } = await chrome.storage.local.get(["focusMinutes", "breakMinutes"]);
       $("time").textContent = formatMMSS(focusMinutes * 60 * 1000);
       $("status").textContent = `${i18n("statusIdle")} / ${i18n("blockedSites")}: ${blocklist.length}`;
       $("mode-label").textContent = i18n("statusIdle");
@@ -126,6 +126,7 @@ async function render() {
       
       // フロー表示更新
       if (focusStep) focusStep.textContent = i18n("flowFocus", [String(focusMinutes)]);
+      if (breakStep) breakStep.textContent = i18n("flowBreak", [String(breakMinutes)]);
       
       // ダークモードを保持しながらfocus/breakクラスを削除
       document.body.classList.remove("focusing", "break");
@@ -135,6 +136,12 @@ async function render() {
     const remaining = endsAt - Date.now();
     $("time").textContent = formatMMSS(remaining);
     $("blocked-count").textContent = String(blocklist.length);
+    
+    // フロー表示をFocus/Break時間で更新
+    const { focusMinutes = 25, breakMinutes = 5 } = await chrome.storage.local.get(["focusMinutes", "breakMinutes"]);
+    if (focusStep) focusStep.textContent = i18n("flowFocus", [String(focusMinutes)]);
+    if (breakStep) breakStep.textContent = i18n("flowBreak", [String(breakMinutes)]);
+    updateStartButton(focusMinutes);
     
     // 背景色とフロー表示
     if (sessionType === "break") {
