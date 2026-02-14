@@ -8,11 +8,11 @@
     "description": "Extension description"
   },
   "tagline": {
-    "message": "La concentración permanece en tu dispositivo",
+    "message": "Funciona completamente sin conexión",
     "description": "Tagline shown in popup header"
   },
   "philosophy": {
-    "message": "Sin conexión. Privado. Sin rastreo.",
+    "message": "Completamente sin conexión. Sin rastreo. Sin recopilación de datos.",
     "description": "Privacy philosophy message"
   },
   "readyToFocus": {

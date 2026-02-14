@@ -8,11 +8,11 @@
     "description": "Beschreibung der Erweiterung"
   },
   "tagline": {
-    "message": "Fokus bleibt auf Ihrem Gerät",
+    "message": "Funktioniert vollständig offline",
     "description": "Slogan im Popup-Header"
   },
   "philosophy": {
-    "message": "Offline. Privat. Kein Tracking.",
+    "message": "Vollständig offline. Kein Tracking. Keine Datenerfassung.",
     "description": "Datenschutz-Philosophie-Nachricht"
   },
   "readyToFocus": {

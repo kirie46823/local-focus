@@ -8,11 +8,11 @@
     "description": "拡張機能の説明"
   },
   "tagline": {
-    "message": "集中はデバイスに留まる",
+    "message": "完全オフラインで動作",
     "description": "ポップアップヘッダーのタグライン"
   },
   "philosophy": {
-    "message": "オフライン。プライベート。追跡なし。",
+    "message": "完全オフライン。追跡なし。データ収集なし。",
     "description": "プライバシー思想メッセージ"
   },
   "readyToFocus": {

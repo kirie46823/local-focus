@@ -8,11 +8,11 @@
     "description": "Extension description"
   },
   "tagline": {
-    "message": "Focus stays on your device",
+    "message": "Works fully offline",
     "description": "Tagline shown in popup header"
   },
   "philosophy": {
-    "message": "Offline. Private. No tracking.",
+    "message": "Fully offline. No tracking. No data collection.",
     "description": "Privacy philosophy message"
   },
   "readyToFocus": {
