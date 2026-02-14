@@ -196,8 +196,8 @@
 </head>
 <body>
   <div class="emoji">🎯</div>
-  <h1>Stay Focused</h1>
-  <h2>This site is blocked during your focus session</h2>
+  <h1 data-i18n="blockedTitle">Stay Focused</h1>
+  <h2 data-i18n="blockedSubtitle">This site is blocked during your focus session</h2>
   
   <div class="site-info" id="site"></div>
   
@@ -205,11 +205,11 @@
   <div class="mode-label" id="mode"></div>
 
   <div class="actions">
-    <button id="back">← Go Back</button>
-    <button id="open-popup">⚙️ Manage Session</button>
+    <button id="back" data-i18n="goBack">← Go Back</button>
+    <button id="open-popup" data-i18n="manageSession">⚙️ Manage Session</button>
   </div>
 
-  <div class="tip">
+  <div class="tip" data-i18n="blockedTip">
     💡 Tip: Click the extension icon in your toolbar to stop or adjust your focus session
   </div>
 
@@ -224,6 +224,7 @@
     <div class="philosophy-footer">Just focus.</div>
   </div>
 
+  <script src="i18n.js"></script>
   <script src="blocked.js"></script>
 </body>
 </html>

@@ -5,6 +5,7 @@ const KEYS = {
   darkMode: "darkMode"
 };
 const $ = (id) => document.getElementById(id);
+const i18n = (key, substitutions) => chrome.i18n.getMessage(key, substitutions);
 
 // ========== Dark Mode Toggle ==========
 async function initDarkMode() {
@@ -19,11 +20,11 @@ function updateDarkModeUI(enabled) {
   if (enabled) {
     document.body.classList.add("dark-mode");
     icon.textContent = "☀️";
-    text.textContent = "Light Mode";
+    text.textContent = i18n("lightMode");
   } else {
     document.body.classList.remove("dark-mode");
     icon.textContent = "🌙";
-    text.textContent = "Dark Mode";
+    text.textContent = i18n("darkMode");
   }
 }
 
@@ -57,7 +58,7 @@ $("saveTimers").onclick = async () => {
 
   // Show confirmation
   const status = $("saveStatus");
-  status.textContent = "✓ Saved!";
+  status.textContent = i18n("saved");
   setTimeout(() => {
     status.textContent = "";
   }, 2000);
@@ -94,7 +95,7 @@ async function render() {
 
   if (blocklist.length === 0) {
     const li = document.createElement("li");
-    li.textContent = "(empty)";
+    li.textContent = i18n("emptyList");
     li.style.color = "#999";
     ul.appendChild(li);
     return;
@@ -105,7 +106,7 @@ async function render() {
     li.textContent = d + " ";
 
     const btn = document.createElement("button");
-    btn.textContent = "Remove";
+    btn.textContent = i18n("removeButton");
     btn.onclick = async () => {
       const next = blocklist.filter(x => x !== d);
       await chrome.storage.local.set({ [KEYS.blocklist]: next });

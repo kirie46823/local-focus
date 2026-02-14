@@ -87,8 +87,8 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
     // 通知音 + メッセージ
     await playNotificationSound();
     await showNotification(
-      "☕ Time for a break!",
-      "Great focus session! Take a 5-minute break."
+      chrome.i18n.getMessage("notifBreakTitle"),
+      chrome.i18n.getMessage("notifBreakMessage", [String(breakMinutes)])
     );
     
     return;
@@ -115,8 +115,8 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
       // 通知音 + メッセージ
       await playNotificationSound();
       await showNotification(
-        "🔥 Ready to focus again!",
-        "Starting next focus session."
+        chrome.i18n.getMessage("notifFocusTitle"),
+        chrome.i18n.getMessage("notifFocusMessage")
       );
       
       return;
@@ -134,8 +134,8 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
     // 通知音 + メッセージ
     await playNotificationSound();
     await showNotification(
-      "✓ Session completed!",
-      "Great work! You can start a new session anytime."
+      chrome.i18n.getMessage("notifCompleteTitle"),
+      chrome.i18n.getMessage("notifCompleteMessage")
     );
   }
 });
