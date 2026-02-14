@@ -41,11 +41,11 @@ async function showNotification(title, message) {
   try {
     const notificationId = await chrome.notifications.create({
       type: "basic",
-      iconUrl: "icon.png",  // アイコンは必須
+      iconUrl: chrome.runtime.getURL("icon.png"),  // 拡張機能のアイコンを使用
       title: title,
       message: message,
       priority: 2,
-      requireInteraction: false,
+      requireInteraction: true,
       silent: true  // 音はoffscreenで鳴らすのでsilent
     });
     console.log("Notification created:", notificationId);
