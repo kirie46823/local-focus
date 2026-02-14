@@ -7,7 +7,7 @@ const modeEl = document.getElementById("mode");
 const backBtn = document.getElementById("back");
 const openPopupBtn = document.getElementById("open-popup");
 
-const i18n = (key, substitutions) => chrome.i18n.getMessage(key, substitutions);
+// i18n function is provided by i18n.js
 
 // ダークモード初期化
 async function initDarkMode() {

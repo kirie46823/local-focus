@@ -5,7 +5,7 @@ const KEYS = {
   darkMode: "darkMode"
 };
 const $ = (id) => document.getElementById(id);
-const i18n = (key, substitutions) => chrome.i18n.getMessage(key, substitutions);
+// i18n function is provided by i18n.js
 
 // ========== Dark Mode Toggle ==========
 async function initDarkMode() {
