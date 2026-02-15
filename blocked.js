@@ -7,11 +7,27 @@ const modeEl = document.getElementById("mode");
 const backBtn = document.getElementById("back");
 const openPopupBtn = document.getElementById("open-popup");
 
+// i18n function is provided by i18n.js
+
+// ダークモード初期化
+async function initDarkMode() {
+  try {
+    const { darkMode = false } = await chrome.storage.local.get(["darkMode"]);
+    if (darkMode) {
+      document.body.classList.add("dark-mode");
+    }
+  } catch (e) {
+    console.error("Failed to load dark mode setting:", e);
+  }
+}
+
+initDarkMode();
+
 // サイト情報表示
 if (site) {
-  siteEl.textContent = `🚫 ${site}`;
+  siteEl.textContent = i18n("blockedSiteLabel", [site]);
 } else {
-  siteEl.textContent = "This site is currently blocked";
+  siteEl.textContent = i18n("blockedSiteDefault");
 }
 
 // 戻るボタン
@@ -38,7 +54,7 @@ async function render() {
 
     if (!focusing || !endsAt) {
       remainingEl.textContent = "00:00";
-      modeEl.textContent = "No active session";
+      modeEl.textContent = i18n("noActiveSession");
       return;
     }
 
@@ -46,7 +62,7 @@ async function render() {
     
     if (remaining <= 0) {
       remainingEl.textContent = "00:00";
-      modeEl.textContent = "Session ended";
+      modeEl.textContent = i18n("sessionEnded");
       return;
     }
 
@@ -54,16 +70,16 @@ async function render() {
     
     // モード表示をより分かりやすく
     if (sessionType === "break") {
-      modeEl.textContent = "☕ Break Time";
+      modeEl.textContent = i18n("breakTime");
       modeEl.style.color = "#28a745"; // 緑色
     } else {
-      modeEl.textContent = "🔥 Focus Mode";
+      modeEl.textContent = i18n("focusMode");
       modeEl.style.color = "#dc3545"; // 赤色
     }
   } catch (e) {
     console.error("Error in blocked.js render:", e);
     remainingEl.textContent = "--:--";
-    modeEl.textContent = "Error loading session data";
+    modeEl.textContent = i18n("errorLoading");
   }
 }
 

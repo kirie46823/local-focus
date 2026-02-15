@@ -1,19 +1,59 @@
 const KEYS = {
   blocklist: "blocklist",
   focusMinutes: "focusMinutes",
-  breakMinutes: "breakMinutes"
+  breakMinutes: "breakMinutes",
+  darkMode: "darkMode",
+  ambientSound: "ambientSound"
 };
 const $ = (id) => document.getElementById(id);
+// i18n function is provided by i18n.js
+
+// ========== Dark Mode Toggle ==========
+async function initDarkMode() {
+  const { darkMode = false } = await chrome.storage.local.get([KEYS.darkMode]);
+  updateDarkModeUI(darkMode);
+}
+
+function updateDarkModeUI(enabled) {
+  const icon = $("dark-mode-icon");
+  const text = $("dark-mode-text");
+  
+  if (enabled) {
+    document.body.classList.add("dark-mode");
+    icon.textContent = "☀️";
+    text.textContent = i18n("lightMode");
+  } else {
+    document.body.classList.remove("dark-mode");
+    icon.textContent = "🌙";
+    text.textContent = i18n("darkMode");
+  }
+}
+
+$("dark-mode-toggle").onclick = async () => {
+  const { darkMode = false } = await chrome.storage.local.get([KEYS.darkMode]);
+  const newValue = !darkMode;
+  await chrome.storage.local.set({ [KEYS.darkMode]: newValue });
+  updateDarkModeUI(newValue);
+};
 
 // ========== Load settings on page load ==========
 async function loadSettings() {
   const {
     focusMinutes = 25,
-    breakMinutes = 5
-  } = await chrome.storage.local.get([KEYS.focusMinutes, KEYS.breakMinutes]);
+    breakMinutes = 5,
+    ambientSound = "rain"
+  } = await chrome.storage.local.get([KEYS.focusMinutes, KEYS.breakMinutes, KEYS.ambientSound]);
 
   $("focusMinutes").value = focusMinutes;
   $("breakMinutes").value = breakMinutes;
+  
+  // Load ambient sound radio button
+  const radios = document.querySelectorAll('input[name="ambientSound"]');
+  radios.forEach(radio => {
+    if (radio.value === ambientSound) {
+      radio.checked = true;
+    }
+  });
 }
 
 // ========== Save timer settings ==========
@@ -28,12 +68,29 @@ $("saveTimers").onclick = async () => {
 
   // Show confirmation
   const status = $("saveStatus");
-  status.textContent = "✓ Saved!";
+  status.textContent = i18n("saved");
   setTimeout(() => {
     status.textContent = "";
   }, 2000);
 
   console.log("Timer settings saved:", { focusMinutes, breakMinutes });
+};
+
+// ========== Save ambient sound settings ==========
+$("saveSound").onclick = async () => {
+  const selected = document.querySelector('input[name="ambientSound"]:checked');
+  const ambientSound = selected ? selected.value : "rain";
+  
+  await chrome.storage.local.set({ [KEYS.ambientSound]: ambientSound });
+  
+  // Show confirmation
+  const status = $("soundSaveStatus");
+  status.textContent = i18n("saved");
+  setTimeout(() => {
+    status.textContent = "";
+  }, 2000);
+  
+  console.log("Ambient sound saved:", ambientSound);
 };
 
 // ========== Block list management ==========
@@ -65,7 +122,7 @@ async function render() {
 
   if (blocklist.length === 0) {
     const li = document.createElement("li");
-    li.textContent = "(empty)";
+    li.textContent = i18n("emptyList");
     li.style.color = "#999";
     ul.appendChild(li);
     return;
@@ -76,7 +133,7 @@ async function render() {
     li.textContent = d + " ";
 
     const btn = document.createElement("button");
-    btn.textContent = "Remove";
+    btn.textContent = i18n("removeButton");
     btn.onclick = async () => {
       const next = blocklist.filter(x => x !== d);
       await chrome.storage.local.set({ [KEYS.blocklist]: next });
@@ -90,5 +147,6 @@ async function render() {
 }
 
 // ========== Initialize ==========
+initDarkMode();
 loadSettings();
 render();

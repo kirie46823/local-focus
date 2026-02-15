@@ -9,6 +9,8 @@
       margin: 24px auto; 
       padding: 0 16px;
       color: #333;
+      background: #fff;
+      transition: background 0.3s, color 0.3s;
     }
     h2 {
       color: #5a67d8;
@@ -31,12 +33,16 @@
       width: 100px;
       border: 1px solid #ccc;
       border-radius: 4px;
+      background: white;
+      color: #333;
     }
     input[type="text"] {
       padding: 8px;
       width: 280px;
       border: 1px solid #ccc;
       border-radius: 4px;
+      background: white;
+      color: #333;
     }
     button {
       padding: 8px 16px;
@@ -70,40 +76,231 @@
       padding: 8px 0;
       border-bottom: 1px solid #eee;
     }
+    
+    /* Dark Mode Toggle */
+    .dark-mode-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+    
+    #dark-mode-toggle {
+      padding: 10px 20px;
+      background: #5a67d8;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    #dark-mode-toggle:hover {
+      background: #4c51bf;
+    }
+    
+    /* ========== Dark Mode Styles ========== */
+    body.dark-mode {
+      background: #1a1a2e;
+      color: #e0e0e0;
+    }
+    
+    body.dark-mode h2 {
+      color: #818cf8;
+      border-bottom-color: #2d3748;
+    }
+    
+    body.dark-mode section {
+      background: #16213e;
+      border: 1px solid #0f3460;
+    }
+    
+    body.dark-mode input[type="number"],
+    body.dark-mode input[type="text"] {
+      background: #0f3460;
+      border-color: #1a365d;
+      color: #e0e0e0;
+    }
+    
+    body.dark-mode input[type="number"]:focus,
+    body.dark-mode input[type="text"]:focus {
+      border-color: #5a67d8;
+      outline: none;
+    }
+    
+    body.dark-mode button {
+      background: #5a67d8;
+    }
+    
+    body.dark-mode button:hover {
+      background: #4c51bf;
+    }
+    
+    body.dark-mode .save-btn {
+      background: #48bb78;
+    }
+    
+    body.dark-mode .save-btn:hover {
+      background: #38a169;
+    }
+    
+    body.dark-mode .hint {
+      color: #adb5bd;
+    }
+    
+    body.dark-mode li {
+      border-bottom-color: #2d3748;
+    }
+    
+    body.dark-mode #dark-mode-toggle {
+      background: #16213e;
+      border: 1px solid #0f3460;
+      color: #e0e0e0;
+    }
+    
+    body.dark-mode #dark-mode-toggle:hover {
+      background: #0f3460;
+    }
+    
+    /* Philosophy Section */
+    .philosophy {
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 24px;
+      margin-top: 32px;
+      border: 1px solid #e9ecef;
+      text-align: center;
+    }
+    
+    .philosophy-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 16px;
+      letter-spacing: 0.3px;
+    }
+    
+    .philosophy-content {
+      font-size: 15px;
+      line-height: 2;
+      color: #6c757d;
+    }
+    
+    .philosophy-content .highlight {
+      display: block;
+      margin: 8px 0;
+      font-weight: 500;
+      color: #495057;
+    }
+    
+    .philosophy-footer {
+      margin-top: 16px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #5a67d8;
+      font-style: italic;
+    }
+    
+    body.dark-mode .philosophy {
+      background: #16213e;
+      border-color: #0f3460;
+    }
+    
+    body.dark-mode .philosophy-title {
+      color: #e0e0e0;
+    }
+    
+    body.dark-mode .philosophy-content {
+      color: #adb5bd;
+    }
+    
+    body.dark-mode .philosophy-content .highlight {
+      color: #cbd5e0;
+    }
+    
+    body.dark-mode .philosophy-footer {
+      color: #818cf8;
+    }
   </style>
 </head>
 <body>
-  <h2>Local Focus – Settings</h2>
+  <div class="dark-mode-section">
+    <h2 data-i18n="optionsTitle">Local Focus – Settings</h2>
+    <button id="dark-mode-toggle">
+      <span id="dark-mode-icon">🌙</span>
+      <span id="dark-mode-text">Dark Mode</span>
+    </button>
+  </div>
 
   <!-- Timer Settings -->
   <section>
-    <h3>⏱️ Timer Settings</h3>
+    <h3 data-i18n="timerSettings">⏱️ Timer Settings</h3>
     
-    <label for="focusMinutes">Focus Duration (minutes)</label>
+    <label for="focusMinutes" data-i18n="focusDuration">Focus Duration (minutes)</label>
     <input type="number" id="focusMinutes" min="1" max="60" value="25" />
-    <span class="hint">Default: 25 minutes (range: 1-60)</span>
+    <span class="hint" data-i18n="focusDurationHint">Default: 25 minutes (range: 1-60)</span>
 
-    <label for="breakMinutes">Break Duration (minutes)</label>
+    <label for="breakMinutes" data-i18n="breakDuration">Break Duration (minutes)</label>
     <input type="number" id="breakMinutes" min="1" max="30" value="5" />
-    <span class="hint">Default: 5 minutes (range: 1-30)</span>
+    <span class="hint" data-i18n="breakDurationHint">Default: 5 minutes (range: 1-30)</span>
 
-    <button class="save-btn" id="saveTimers">Save Timer Settings</button>
+    <button class="save-btn" id="saveTimers" data-i18n="saveTimerSettings">Save Timer Settings</button>
     <span id="saveStatus" style="margin-left: 12px; color: #48bb78;"></span>
+  </section>
+
+  <!-- Ambient Sound Settings -->
+  <section>
+    <h3 data-i18n="ambientSoundSettings">🎵 Ambient Sound</h3>
+    <p data-i18n="ambientSoundDescription">Choose background sound during focus sessions:</p>
+    
+    <label>
+      <input type="radio" name="ambientSound" value="rain" />
+      <span data-i18n="soundRain">Rain</span>
+    </label>
+    
+    <label style="display: block; margin-top: 8px;">
+      <input type="radio" name="ambientSound" value="brown" />
+      <span data-i18n="soundBrown">Brown Noise</span>
+    </label>
+    
+    <label style="display: block; margin-top: 8px;">
+      <input type="radio" name="ambientSound" value="none" />
+      <span data-i18n="soundNone">None (Silent)</span>
+    </label>
+    
+    <button class="save-btn" id="saveSound" data-i18n="saveSoundSettings" style="margin-top: 16px;">Save Sound Settings</button>
+    <span id="soundSaveStatus" style="margin-left: 12px; color: #48bb78;"></span>
   </section>
 
   <!-- Block List -->
   <section>
-    <h3>🚫 Block List</h3>
-    <p>Add domains to block during focus sessions:</p>
+    <h3 data-i18n="blockList">🚫 Block List</h3>
+    <p data-i18n="blockListDescription">Add domains to block during focus sessions:</p>
 
     <div>
-      <input type="text" id="domain" placeholder="twitter.com" />
-      <button id="add">Add</button>
+      <input type="text" id="domain" data-i18n-placeholder="domainPlaceholder" placeholder="twitter.com" />
+      <button id="add" data-i18n="addButton">Add</button>
     </div>
 
     <ul id="list"></ul>
   </section>
 
+  <!-- Philosophy Section -->
+  <section class="philosophy">
+    <div class="philosophy-title">Local Focus is designed for quiet work.</div>
+    <div class="philosophy-content">
+      <span class="highlight">No accounts.</span>
+      <span class="highlight">No tracking.</span>
+      <span class="highlight">No cloud.</span>
+    </div>
+    <div class="philosophy-footer">Just focus.</div>
+  </section>
+
+  <script src="i18n.js"></script>
   <script src="options.js"></script>
 </body>
 </html>

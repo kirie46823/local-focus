@@ -5,7 +5,8 @@ const KEYS = {
   sessionType: "sessionType",  // "focus" | "break" | null
   focusMinutes: "focusMinutes", // number (default 25)
   breakMinutes: "breakMinutes",  // number (default 5)
-  loopEnabled: "loopEnabled"    // boolean (default false)
+  loopEnabled: "loopEnabled",    // boolean (default false)
+  ambientSound: "ambientSound"   // string: "rain" | "brown" | "none" (default "rain")
 };
 
 
@@ -13,12 +14,13 @@ const ALARM_NAME = "focusEnd";
 const RULE_BASE = 1000;
 
 chrome.runtime.onInstalled.addListener(async () => {
-  const cur = await chrome.storage.local.get([KEYS.blocklist, KEYS.focusing, KEYS.endsAt, KEYS.sessionType, KEYS.loopEnabled]);
+  const cur = await chrome.storage.local.get([KEYS.blocklist, KEYS.focusing, KEYS.endsAt, KEYS.sessionType, KEYS.loopEnabled, KEYS.ambientSound]);
   if (!Array.isArray(cur[KEYS.blocklist])) await chrome.storage.local.set({ [KEYS.blocklist]: [] });
   if (typeof cur[KEYS.focusing] !== "boolean") await chrome.storage.local.set({ [KEYS.focusing]: false });
   if (cur[KEYS.endsAt] === undefined) await chrome.storage.local.set({ [KEYS.endsAt]: null });
   if (cur[KEYS.sessionType] === undefined) await chrome.storage.local.set({ [KEYS.sessionType]: null });
   if (cur[KEYS.loopEnabled] === undefined) await chrome.storage.local.set({ [KEYS.loopEnabled]: false });
+  if (cur[KEYS.ambientSound] === undefined) await chrome.storage.local.set({ [KEYS.ambientSound]: "rain" });
 
   await syncRules();
 });
@@ -27,8 +29,10 @@ chrome.runtime.onInstalled.addListener(async () => {
 // 通知音を再生
 async function playNotificationSound() {
   try {
+    console.log("Playing notification sound...");
     await ensureOffscreen();
     await chrome.runtime.sendMessage({ type: "PLAY_NOTIFICATION" });
+    console.log("Notification sound sent to offscreen");
   } catch (e) {
     console.error("Failed to play notification sound:", e);
   }
@@ -37,27 +41,32 @@ async function playNotificationSound() {
 // 通知を表示
 async function showNotification(title, message) {
   try {
-    await chrome.notifications.create({
+    const notificationId = await chrome.notifications.create({
       type: "basic",
+      iconUrl: chrome.runtime.getURL("icon.png"),  // 拡張機能のアイコンを使用
       title: title,
       message: message,
       priority: 2,
-      requireInteraction: false,
-      silent: true
+      requireInteraction: true,
+      silent: true  // 音はoffscreenで鳴らすのでsilent
     });
+    console.log("Notification created:", notificationId);
   } catch (e) {
     console.error("Failed to show notification:", e);
   }
 }
 
 chrome.alarms.onAlarm.addListener(async (alarm) => {
+  console.log("Alarm triggered:", alarm.name);
   if (alarm.name !== ALARM_NAME) return;
 
   const { focusing, sessionType, loopEnabled = false } = await chrome.storage.local.get([KEYS.focusing, KEYS.sessionType, KEYS.loopEnabled]);
+  console.log("Session state:", { focusing, sessionType, loopEnabled });
   if (!focusing) return;
 
   // Focus終了 → Break自動開始（5分固定）
   if (sessionType === "focus") {
+    console.log("Focus session ended, starting break...");
     await stopAmbient();
 
     // 設定からBreak時間を取得（デフォルト5分）
@@ -80,8 +89,8 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
     // 通知音 + メッセージ
     await playNotificationSound();
     await showNotification(
-      "☕ Time for a break!",
-      "Great focus session! Take a 5-minute break."
+      chrome.i18n.getMessage("notifBreakTitle"),
+      chrome.i18n.getMessage("notifBreakMessage", [String(breakMinutes)])
     );
     
     return;
@@ -108,8 +117,8 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
       // 通知音 + メッセージ
       await playNotificationSound();
       await showNotification(
-        "🔥 Ready to focus again!",
-        "Starting next focus session."
+        chrome.i18n.getMessage("notifFocusTitle"),
+        chrome.i18n.getMessage("notifFocusMessage")
       );
       
       return;
@@ -127,8 +136,8 @@ chrome.alarms.onAlarm.addListener(async (alarm) => {
     // 通知音 + メッセージ
     await playNotificationSound();
     await showNotification(
-      "✓ Session completed!",
-      "Great work! You can start a new session anytime."
+      chrome.i18n.getMessage("notifCompleteTitle"),
+      chrome.i18n.getMessage("notifCompleteMessage")
     );
   }
 });
@@ -252,8 +261,16 @@ async function ensureOffscreen() {
 }
 
 async function playAmbient() {
-  await ensureOffscreen();
-  await chrome.runtime.sendMessage({ type: "AUDIO_PLAY" });
+  const { ambientSound = "rain" } = await chrome.storage.local.get([KEYS.ambientSound]);
+  // "none"の場合は音を再生しない
+  if (ambientSound === "none") return;
+  
+  try {
+    await ensureOffscreen();
+    await chrome.runtime.sendMessage({ type: "AUDIO_PLAY", sound: ambientSound });
+  } catch (e) {
+    console.error("Failed to play ambient sound:", e);
+  }
 }
 
 async function stopAmbient() {

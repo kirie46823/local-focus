@@ -1,9 +1,11 @@
 const KEYS = {
   loopEnabled: "loopEnabled",
-  focusMinutes: "focusMinutes"
+  focusMinutes: "focusMinutes",
+  darkMode: "darkMode"
 };
 
 const $ = (id) => document.getElementById(id);
+// i18n function is provided by i18n.js
 
 function sendMessage(msg) {
   return new Promise((resolve, reject) => {
@@ -39,6 +41,33 @@ $("loop-toggle").onclick = async () => {
   await updateLoopUI(newValue);
 };
 
+// ダークモードトグル
+$("dark-mode-toggle").onclick = async () => {
+  const { darkMode = false } = await chrome.storage.local.get([KEYS.darkMode]);
+  const newValue = !darkMode;
+  await chrome.storage.local.set({ [KEYS.darkMode]: newValue });
+  await updateDarkModeUI(newValue);
+};
+
+// ダークモードUI更新
+async function updateDarkModeUI(enabled) {
+  const icon = $("dark-mode-icon");
+  
+  if (enabled) {
+    document.body.classList.add("dark-mode");
+    icon.textContent = "☀️";
+  } else {
+    document.body.classList.remove("dark-mode");
+    icon.textContent = "🌙";
+  }
+}
+
+// ダークモード初期化（最初に1回だけ実行）
+async function initDarkMode() {
+  const { darkMode = false } = await chrome.storage.local.get([KEYS.darkMode]);
+  await updateDarkModeUI(darkMode);
+}
+
 // ループUI更新
 async function updateLoopUI(enabled) {
   const btn = $("loop-toggle");
@@ -48,12 +77,17 @@ async function updateLoopUI(enabled) {
   if (enabled) {
     btn.classList.add("enabled");
     if (indicator) indicator.classList.add("enabled");
-    text.textContent = "Loop ON";
+    text.textContent = i18n("loopOn");
   } else {
     btn.classList.remove("enabled");
     if (indicator) indicator.classList.remove("enabled");
-    text.textContent = "Loop OFF";
+    text.textContent = i18n("loopOff");
   }
+}
+
+// Start button更新
+function updateStartButton(focusMinutes) {
+  $("start").textContent = i18n("startButton", [String(focusMinutes)]);
 }
 
 
@@ -80,31 +114,57 @@ async function render() {
     if (breakStep) breakStep.classList.remove("active");
 
     if (!focusing || !endsAt || endsAt <= Date.now()) {
-      // 設定から Focus 時間を取得して表示
-      const { focusMinutes = 25 } = await chrome.storage.local.get(["focusMinutes"]);
+      // 設定から Focus/Break 時間を取得して表示
+      const { focusMinutes = 25, breakMinutes = 5 } = await chrome.storage.local.get(["focusMinutes", "breakMinutes"]);
       $("time").textContent = formatMMSS(focusMinutes * 60 * 1000);
-      $("status").textContent = `Idle / blocked sites: ${blocklist.length}`;
-      document.body.className = "";
+      $("status").textContent = `${i18n("statusIdle")} / ${i18n("blockedSites")}: ${blocklist.length}`;
+      $("mode-label").textContent = i18n("statusIdle");
+      $("blocked-count").textContent = String(blocklist.length);
+      
+      // Start button更新
+      updateStartButton(focusMinutes);
+      
+      // フロー表示更新
+      if (focusStep) focusStep.textContent = i18n("flowFocus", [String(focusMinutes)]);
+      if (breakStep) breakStep.textContent = i18n("flowBreak", [String(breakMinutes)]);
+      
+      // ダークモードを保持しながらfocus/breakクラスを削除
+      document.body.classList.remove("focusing", "break");
       return;
     }
 
     const remaining = endsAt - Date.now();
     $("time").textContent = formatMMSS(remaining);
+    $("blocked-count").textContent = String(blocklist.length);
+    
+    // フロー表示をFocus/Break時間で更新
+    const { focusMinutes = 25, breakMinutes = 5 } = await chrome.storage.local.get(["focusMinutes", "breakMinutes"]);
+    if (focusStep) focusStep.textContent = i18n("flowFocus", [String(focusMinutes)]);
+    if (breakStep) breakStep.textContent = i18n("flowBreak", [String(breakMinutes)]);
+    updateStartButton(focusMinutes);
     
     // 背景色とフロー表示
     if (sessionType === "break") {
-      document.body.className = "break-mode";
+      // ダークモードを保持しながらbreakクラスを追加
+      document.body.classList.remove("focusing");
+      document.body.classList.add("break");
       if (breakStep) breakStep.classList.add("active");
-      $("status").textContent = `Break… / blocked sites: ${blocklist.length}`;
+      $("status").textContent = `${i18n("statusBreak")} / ${i18n("blockedSites")}: ${blocklist.length}`;
+      $("mode-label").textContent = i18n("statusBreak").replace("…", "");
     } else {
-      document.body.className = "focus-mode";
+      // ダークモードを保持しながらfocusingクラスを追加
+      document.body.classList.remove("break");
+      document.body.classList.add("focusing");
       if (focusStep) focusStep.classList.add("active");
-      $("status").textContent = `Focusing… / blocked sites: ${blocklist.length}`;
+      $("status").textContent = `${i18n("statusFocusing")} / ${i18n("blockedSites")}: ${blocklist.length}`;
+      $("mode-label").textContent = i18n("statusFocusing").replace("…", "");
     }
   } catch (e) {
     $("status").textContent = `Error: ${e?.message || e}`;
   }
 }
 
+// 初期化
+initDarkMode();
 render();
 setInterval(render, 500);

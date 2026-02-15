@@ -1,0 +1,284 @@
+{
+  "extName": {
+    "message": "Local Focus",
+    "description": "Extension name"
+  },
+  "extDescription": {
+    "message": "Privacy-first Pomodoro timer. No accounts, no tracking, no cloud. Just focus.",
+    "description": "Extension description"
+  },
+  "tagline": {
+    "message": "Works fully offline",
+    "description": "Tagline shown in popup header"
+  },
+  "philosophy": {
+    "message": "Fully offline. No tracking. No data collection.",
+    "description": "Privacy philosophy message"
+  },
+  "readyToFocus": {
+    "message": "Ready to focus",
+    "description": "Status when idle"
+  },
+  "startButton": {
+    "message": "Start $MINUTES$m",
+    "description": "Start focus button text",
+    "placeholders": {
+      "minutes": {
+        "content": "$1",
+        "example": "25"
+      }
+    }
+  },
+  "stopButton": {
+    "message": "Stop",
+    "description": "Stop focus button text"
+  },
+  "loopOn": {
+    "message": "Loop ON",
+    "description": "Loop mode enabled"
+  },
+  "loopOff": {
+    "message": "Loop OFF",
+    "description": "Loop mode disabled"
+  },
+  "settingsButton": {
+    "message": "Settings",
+    "description": "Settings button text"
+  },
+  "blockedSites": {
+    "message": "Blocked sites",
+    "description": "Blocked sites label"
+  },
+  "statusLabel": {
+    "message": "Status",
+    "description": "Status label"
+  },
+  "statusIdle": {
+    "message": "Idle",
+    "description": "Idle status"
+  },
+  "statusFocusing": {
+    "message": "Focusing…",
+    "description": "Focusing status"
+  },
+  "statusBreak": {
+    "message": "Break…",
+    "description": "Break status"
+  },
+  "flowFocus": {
+    "message": "Focus $MINUTES$m",
+    "description": "Focus flow step",
+    "placeholders": {
+      "minutes": {
+        "content": "$1",
+        "example": "25"
+      }
+    }
+  },
+  "flowBreak": {
+    "message": "Break $MINUTES$m",
+    "description": "Break flow step",
+    "placeholders": {
+      "minutes": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "breakInfo": {
+    "message": "☕ Take a break! Sites are unblocked during break time.",
+    "description": "Break time information"
+  },
+  "optionsTitle": {
+    "message": "Local Focus – Settings",
+    "description": "Options page title"
+  },
+  "timerSettings": {
+    "message": "⏱️ Timer Settings",
+    "description": "Timer settings section title"
+  },
+  "focusDuration": {
+    "message": "Focus Duration (minutes)",
+    "description": "Focus duration label"
+  },
+  "focusDurationHint": {
+    "message": "Default: 25 minutes (range: 1-60)",
+    "description": "Focus duration hint"
+  },
+  "breakDuration": {
+    "message": "Break Duration (minutes)",
+    "description": "Break duration label"
+  },
+  "breakDurationHint": {
+    "message": "Default: 5 minutes (range: 1-30)",
+    "description": "Break duration hint"
+  },
+  "saveTimerSettings": {
+    "message": "Save Timer Settings",
+    "description": "Save timer settings button"
+  },
+  "saved": {
+    "message": "✓ Saved!",
+    "description": "Saved confirmation message"
+  },
+  "blockList": {
+    "message": "🚫 Block List",
+    "description": "Block list section title"
+  },
+  "blockListDescription": {
+    "message": "Add domains to block during focus sessions:",
+    "description": "Block list description"
+  },
+  "domainPlaceholder": {
+    "message": "twitter.com",
+    "description": "Domain input placeholder"
+  },
+  "addButton": {
+    "message": "Add",
+    "description": "Add button text"
+  },
+  "removeButton": {
+    "message": "Remove",
+    "description": "Remove button text"
+  },
+  "emptyList": {
+    "message": "(empty)",
+    "description": "Empty list message"
+  },
+  "darkMode": {
+    "message": "Dark Mode",
+    "description": "Dark mode button text"
+  },
+  "lightMode": {
+    "message": "Light Mode",
+    "description": "Light mode button text"
+  },
+  "blockedTitle": {
+    "message": "Stay Focused",
+    "description": "Blocked page title"
+  },
+  "blockedSubtitle": {
+    "message": "This site is blocked during your focus session",
+    "description": "Blocked page subtitle"
+  },
+  "blockedSiteLabel": {
+    "message": "🚫 $SITE$",
+    "description": "Blocked site label",
+    "placeholders": {
+      "site": {
+        "content": "$1",
+        "example": "twitter.com"
+      }
+    }
+  },
+  "blockedSiteDefault": {
+    "message": "This site is currently blocked",
+    "description": "Default blocked site message"
+  },
+  "goBack": {
+    "message": "← Go Back",
+    "description": "Go back button"
+  },
+  "manageSession": {
+    "message": "⚙️ Manage Session",
+    "description": "Manage session button"
+  },
+  "blockedTip": {
+    "message": "💡 Tip: Click the extension icon in your toolbar to stop or adjust your focus session",
+    "description": "Blocked page tip"
+  },
+  "noActiveSession": {
+    "message": "No active session",
+    "description": "No active session message"
+  },
+  "sessionEnded": {
+    "message": "Session ended",
+    "description": "Session ended message"
+  },
+  "focusMode": {
+    "message": "🔥 Focus Mode",
+    "description": "Focus mode label"
+  },
+  "breakTime": {
+    "message": "☕ Break Time",
+    "description": "Break time label"
+  },
+  "errorLoading": {
+    "message": "Error loading session data",
+    "description": "Error loading message"
+  },
+  "notifBreakTitle": {
+    "message": "☕ Time for a break!",
+    "description": "Break notification title"
+  },
+  "notifBreakMessage": {
+    "message": "Great focus session! Take a $MINUTES$-minute break.",
+    "description": "Break notification message",
+    "placeholders": {
+      "minutes": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "notifFocusTitle": {
+    "message": "🔥 Ready to focus again!",
+    "description": "Ready to focus notification title"
+  },
+  "notifFocusMessage": {
+    "message": "Starting next focus session.",
+    "description": "Starting focus notification message"
+  },
+  "notifCompleteTitle": {
+    "message": "✓ Session completed!",
+    "description": "Session complete notification title"
+  },
+  "notifCompleteMessage": {
+    "message": "Great work! You can start a new session anytime.",
+    "description": "Session complete notification message"
+  },
+  "philosophyLong": {
+    "message": "Local Focus is designed for quiet work.",
+    "description": "Long philosophy title"
+  },
+  "philosophyNoAccounts": {
+    "message": "No accounts.",
+    "description": "No accounts principle"
+  },
+  "philosophyNoTracking": {
+    "message": "No tracking.",
+    "description": "No tracking principle"
+  },
+  "philosophyNoCloud": {
+    "message": "No cloud.",
+    "description": "No cloud principle"
+  },
+  "philosophyJustFocus": {
+    "message": "Just focus.",
+    "description": "Just focus tagline"
+  },
+  "ambientSoundSettings": {
+    "message": "🎵 Ambient Sound",
+    "description": "Ambient sound settings section title"
+  },
+  "ambientSoundDescription": {
+    "message": "Choose background sound during focus sessions:",
+    "description": "Ambient sound description"
+  },
+  "soundRain": {
+    "message": "Rain",
+    "description": "Rain sound option"
+  },
+  "soundBrown": {
+    "message": "Brown Noise",
+    "description": "Brown noise sound option"
+  },
+  "soundNone": {
+    "message": "None (Silent)",
+    "description": "No sound option"
+  },
+  "saveSoundSettings": {
+    "message": "Save Sound Settings",
+    "description": "Save sound settings button"
+  }
+}

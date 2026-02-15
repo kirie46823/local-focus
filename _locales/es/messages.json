@@ -1,0 +1,284 @@
+{
+  "extName": {
+    "message": "Local Focus",
+    "description": "Extension name"
+  },
+  "extDescription": {
+    "message": "Temporizador Pomodoro centrado en la privacidad. Sin cuentas, sin rastreo, sin nube. Solo concentración.",
+    "description": "Extension description"
+  },
+  "tagline": {
+    "message": "Funciona completamente sin conexión",
+    "description": "Tagline shown in popup header"
+  },
+  "philosophy": {
+    "message": "Completamente sin conexión. Sin rastreo. Sin recopilación de datos.",
+    "description": "Privacy philosophy message"
+  },
+  "readyToFocus": {
+    "message": "Listo para concentrarse",
+    "description": "Status when idle"
+  },
+  "startButton": {
+    "message": "Iniciar $MINUTES$m",
+    "description": "Start focus button text",
+    "placeholders": {
+      "minutes": {
+        "content": "$1",
+        "example": "25"
+      }
+    }
+  },
+  "stopButton": {
+    "message": "Detener",
+    "description": "Stop focus button text"
+  },
+  "loopOn": {
+    "message": "Bucle ON",
+    "description": "Loop mode enabled"
+  },
+  "loopOff": {
+    "message": "Bucle OFF",
+    "description": "Loop mode disabled"
+  },
+  "settingsButton": {
+    "message": "Configuración",
+    "description": "Settings button text"
+  },
+  "blockedSites": {
+    "message": "Sitios bloqueados",
+    "description": "Blocked sites label"
+  },
+  "statusLabel": {
+    "message": "Estado",
+    "description": "Status label"
+  },
+  "statusIdle": {
+    "message": "Inactivo",
+    "description": "Idle status"
+  },
+  "statusFocusing": {
+    "message": "Concentrando…",
+    "description": "Focusing status"
+  },
+  "statusBreak": {
+    "message": "Descanso…",
+    "description": "Break status"
+  },
+  "flowFocus": {
+    "message": "Concentración $MINUTES$m",
+    "description": "Focus flow step",
+    "placeholders": {
+      "minutes": {
+        "content": "$1",
+        "example": "25"
+      }
+    }
+  },
+  "flowBreak": {
+    "message": "Descanso $MINUTES$m",
+    "description": "Break flow step",
+    "placeholders": {
+      "minutes": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "breakInfo": {
+    "message": "☕ ¡Tómate un descanso! Los sitios están desbloqueados durante el descanso.",
+    "description": "Break time information"
+  },
+  "optionsTitle": {
+    "message": "Local Focus – Configuración",
+    "description": "Options page title"
+  },
+  "timerSettings": {
+    "message": "⏱️ Configuración del temporizador",
+    "description": "Timer settings section title"
+  },
+  "focusDuration": {
+    "message": "Duración de concentración (minutos)",
+    "description": "Focus duration label"
+  },
+  "focusDurationHint": {
+    "message": "Predeterminado: 25 minutos (rango: 1-60)",
+    "description": "Focus duration hint"
+  },
+  "breakDuration": {
+    "message": "Duración del descanso (minutos)",
+    "description": "Break duration label"
+  },
+  "breakDurationHint": {
+    "message": "Predeterminado: 5 minutos (rango: 1-30)",
+    "description": "Break duration hint"
+  },
+  "saveTimerSettings": {
+    "message": "Guardar configuración del temporizador",
+    "description": "Save timer settings button"
+  },
+  "saved": {
+    "message": "✓ ¡Guardado!",
+    "description": "Saved confirmation message"
+  },
+  "blockList": {
+    "message": "🚫 Lista de bloqueo",
+    "description": "Block list section title"
+  },
+  "blockListDescription": {
+    "message": "Agrega dominios para bloquear durante las sesiones de concentración:",
+    "description": "Block list description"
+  },
+  "domainPlaceholder": {
+    "message": "twitter.com",
+    "description": "Domain input placeholder"
+  },
+  "addButton": {
+    "message": "Agregar",
+    "description": "Add button text"
+  },
+  "removeButton": {
+    "message": "Eliminar",
+    "description": "Remove button text"
+  },
+  "emptyList": {
+    "message": "(vacío)",
+    "description": "Empty list message"
+  },
+  "darkMode": {
+    "message": "Modo oscuro",
+    "description": "Dark mode button text"
+  },
+  "lightMode": {
+    "message": "Modo claro",
+    "description": "Light mode button text"
+  },
+  "blockedTitle": {
+    "message": "Mantén la concentración",
+    "description": "Blocked page title"
+  },
+  "blockedSubtitle": {
+    "message": "Este sitio está bloqueado durante tu sesión de concentración",
+    "description": "Blocked page subtitle"
+  },
+  "blockedSiteLabel": {
+    "message": "🚫 $SITE$",
+    "description": "Blocked site label",
+    "placeholders": {
+      "site": {
+        "content": "$1",
+        "example": "twitter.com"
+      }
+    }
+  },
+  "blockedSiteDefault": {
+    "message": "Este sitio está actualmente bloqueado",
+    "description": "Default blocked site message"
+  },
+  "goBack": {
+    "message": "← Volver",
+    "description": "Go back button"
+  },
+  "manageSession": {
+    "message": "⚙️ Administrar sesión",
+    "description": "Manage session button"
+  },
+  "blockedTip": {
+    "message": "💡 Consejo: Haz clic en el icono de la extensión en tu barra de herramientas para detener o ajustar tu sesión de concentración",
+    "description": "Blocked page tip"
+  },
+  "noActiveSession": {
+    "message": "No hay sesión activa",
+    "description": "No active session message"
+  },
+  "sessionEnded": {
+    "message": "Sesión terminada",
+    "description": "Session ended message"
+  },
+  "focusMode": {
+    "message": "🔥 Modo concentración",
+    "description": "Focus mode label"
+  },
+  "breakTime": {
+    "message": "☕ Tiempo de descanso",
+    "description": "Break time label"
+  },
+  "errorLoading": {
+    "message": "Error al cargar datos de la sesión",
+    "description": "Error loading message"
+  },
+  "notifBreakTitle": {
+    "message": "☕ ¡Hora de descansar!",
+    "description": "Break notification title"
+  },
+  "notifBreakMessage": {
+    "message": "¡Gran sesión de concentración! Tómate un descanso de $MINUTES$ minutos.",
+    "description": "Break notification message",
+    "placeholders": {
+      "minutes": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "notifFocusTitle": {
+    "message": "🔥 ¡Listo para concentrarte de nuevo!",
+    "description": "Ready to focus notification title"
+  },
+  "notifFocusMessage": {
+    "message": "Iniciando siguiente sesión de concentración.",
+    "description": "Starting focus notification message"
+  },
+  "notifCompleteTitle": {
+    "message": "✓ ¡Sesión completada!",
+    "description": "Session complete notification title"
+  },
+  "notifCompleteMessage": {
+    "message": "¡Buen trabajo! Puedes iniciar una nueva sesión en cualquier momento.",
+    "description": "Session complete notification message"
+  },
+  "philosophyLong": {
+    "message": "Local Focus está diseñado para el trabajo tranquilo.",
+    "description": "Long philosophy title"
+  },
+  "philosophyNoAccounts": {
+    "message": "Sin cuentas.",
+    "description": "No accounts principle"
+  },
+  "philosophyNoTracking": {
+    "message": "Sin rastreo.",
+    "description": "No tracking principle"
+  },
+  "philosophyNoCloud": {
+    "message": "Sin nube.",
+    "description": "No cloud principle"
+  },
+  "philosophyJustFocus": {
+    "message": "Solo concentración.",
+    "description": "Just focus tagline"
+  },
+  "ambientSoundSettings": {
+    "message": "🎵 Sonido ambiental",
+    "description": "Ambient sound settings section title"
+  },
+  "ambientSoundDescription": {
+    "message": "Elige el sonido de fondo durante las sesiones de concentración:",
+    "description": "Ambient sound description"
+  },
+  "soundRain": {
+    "message": "Lluvia",
+    "description": "Rain sound option"
+  },
+  "soundBrown": {
+    "message": "Ruido marrón",
+    "description": "Brown noise sound option"
+  },
+  "soundNone": {
+    "message": "Ninguno (Silencio)",
+    "description": "No sound option"
+  },
+  "saveSoundSettings": {
+    "message": "Guardar configuración de sonido",
+    "description": "Save sound settings button"
+  }
+}
